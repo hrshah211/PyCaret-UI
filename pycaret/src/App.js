@@ -1,9 +1,14 @@
-import './App.css';
+import "./App.css";
+import Navbar from "./components/navbar/navbar";
+import Setup from "./components/setup/setup";
+import Data from "./components/data/data";
 
 function App() {
   return (
     <div className="App">
-      <h1>PyCaret</h1>
+      <Navbar />
+      <Data />
+      <Setup />
     </div>
   );
 }
