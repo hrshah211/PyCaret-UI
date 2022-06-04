@@ -4,7 +4,7 @@ import Options from "./options";
 const Data = () => {
   return (
     <>
-      <div>Data Load</div>
+      <h1>Data Load</h1>
       <Options />
     </>
   );
