@@ -1,12 +1,11 @@
 # PyCaret-UI
 
-Steps to Run Backend(First Time):
+Steps to Run Backend:
 1) cd pycaret_server
-2) python -m venv venv 
+2) python -m venv venv(First Time)
 3) venv/scripts/activate
 4) pip install -r requirements.txt
-
-To Run the Code 'python server.py'
+5) python server.py
 
 Use 'pip freeze > requirements.txt' if there are changes in the packages. 
 
