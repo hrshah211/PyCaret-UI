@@ -10,7 +10,6 @@ const Preset = () => {
       })
     );
   }, []);
-  console.log(dataFiles);
   return (
     <>
       <div>Preset</div>
