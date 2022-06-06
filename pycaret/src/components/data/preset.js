@@ -10,11 +10,16 @@ const Preset = () => {
       })
     );
   }, []);
-  console.log(dataFiles)
+  console.log(dataFiles);
   return (
-    <div>
-      Preset
-    </div>
+    <>
+      <div>Preset</div>
+      <ul>
+        {dataFiles.map((data) => {
+          return <li key={data}>{data}</li>;
+        })}
+      </ul>
+    </>
   );
 };
 
