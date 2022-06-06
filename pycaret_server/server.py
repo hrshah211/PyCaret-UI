@@ -2,7 +2,7 @@ from flask import Flask
 from github import Github
 import pandas as pd
 
-g = Github("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")
+g = Github("<ENTER GITHUB TOKEN>")
 repo = g.get_repo("pycaret/pycaret")
 index = pd.read_csv('https://raw.githubusercontent.com/pycaret/pycaret/master/datasets/index.csv')
 
