@@ -1,7 +1,7 @@
 from flask import Flask
 from github import Github
 
-g = Github("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")
+g = Github("<ENTER GITHUB TOKEN>")
 repo = g.get_repo("pycaret/pycaret")
 contents = repo.get_contents('/datasets')
 files = []
