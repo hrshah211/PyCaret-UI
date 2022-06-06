@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Preset = () => {
-  return <div>Preset</div>;
+  const [dataFiles, setDataFiles] = useState([]);
+
+  useEffect(() => {
+    fetch("/members").then((res) =>
+      res.json().then((data) => {
+        setDataFiles(data.members);
+      })
+    );
+  }, []);
+  console.log(dataFiles)
+  return (
+    <div>
+      Preset
+    </div>
+  );
 };
 
 export default Preset;
