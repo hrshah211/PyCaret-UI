@@ -7,10 +7,22 @@ import Select from "@mui/material/Select";
 
 const Preset = () => {
   const [dataFiles, setDataFiles] = useState([]);
+  const [loadedData, setloadedData] = useState({});
   const [selectedDataset, setSelectedDataset] = useState("");
 
   const handleChange = (event) => {
+    fetch("/loadData", {
+      'method': 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(event.target.value)
+    }).then(response => response.json())
+      .catch(error => console.log(error))
+      .then((response) => setloadedData(response))
+      .catch(error => console.log('error', error))
     setSelectedDataset(event.target.value);
+    console.log(loadedData)
   };
 
   useEffect(() => {
@@ -38,6 +50,8 @@ const Preset = () => {
           </Select>
         </FormControl>
       </Box>
+      <div>{loadedData['columns']}</div>
+      <div>{loadedData['data']}</div>
     </>
   );
 };
