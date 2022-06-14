@@ -51,6 +51,7 @@ const Preset = () => {
         </FormControl>
       </Box>
       <div>{loadedData['columns']}</div>
+      <br></br>
       <div>{loadedData['data']}</div>
     </>
   );
