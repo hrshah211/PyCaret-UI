@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+import { StyledDiv, StyledFormControl } from "../../Styles";
 import Select from "@mui/material/Select";
 
 const Preset = () => {
@@ -33,8 +32,8 @@ const Preset = () => {
   }, []);
   return (
     <>
-      <Box>
-        <FormControl fullWidth>
+      <StyledDiv>
+        <StyledFormControl>
           <InputLabel id="demo-simple-select-label">Datasets</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -47,24 +46,24 @@ const Preset = () => {
               return <MenuItem value={data}>{data}</MenuItem>;
             })}
           </Select>
-        </FormControl>
-      </Box>
-      {Object.keys(loadedData).length > 0 && (
-        <table>
-          <tr>
-            {Object.keys(loadedData[0]).map((columns) => (
-              <th key={columns}>{columns}</th>
-            ))}
-          </tr>
-          {Object.keys(loadedData).map((key) => (
+        </StyledFormControl>
+        {Object.keys(loadedData).length > 0 && (
+          <table>
             <tr>
-              {Object.keys(loadedData[key]).map((ind) => (
-                <td key={ind}>{loadedData[key][ind]}</td>
+              {Object.keys(loadedData[0]).map((columns) => (
+                <th key={columns}>{columns}</th>
               ))}
             </tr>
-          ))}
-        </table>
-      )}
+            {Object.keys(loadedData).map((key) => (
+              <tr>
+                {Object.keys(loadedData[key]).map((ind) => (
+                  <td key={ind}>{loadedData[key][ind]}</td>
+                ))}
+              </tr>
+            ))}
+          </table>
+        )}
+      </StyledDiv>
     </>
   );
 };

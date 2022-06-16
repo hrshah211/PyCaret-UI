@@ -1,10 +1,11 @@
 import React from "react";
 import Options from "./options";
+import { StyledDiv } from '../../Styles'
 
 const Data = () => {
   return (
     <>
-      <h1>Data Load</h1>
+      <StyledDiv><h1>Data Load</h1></StyledDiv>
       <Options />
     </>
   );

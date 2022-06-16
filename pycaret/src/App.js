@@ -1,4 +1,3 @@
-import "./App.css";
 import Navbar from "./components/navbar/navbar";
 import Setup from "./components/setup/setup";
 import Data from "./components/data/data";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
+import { StyledDiv, StyledFormControl } from "../../Styles";
 import Preset from "./preset";
 import Link from "./link";
 import Upload from "./upload";
@@ -32,25 +32,27 @@ function Options() {
 
   return (
     <>
-      <FormControl>
-        <RadioGroup row name="row-radio-buttons-group">
-          <FormControlLabel
-            value="Preset Data"
-            control={<Radio onClick={handlePresetClick} />}
-            label="Preset Data"
-          />
-          <FormControlLabel
-            value="Provide the Link"
-            control={<Radio onClick={handleLinkClick} />}
-            label="Provide the Link"
-          />
-          <FormControlLabel
-            value="Upload File"
-            control={<Radio onClick={handleUploadClick} />}
-            label="Upload File"
-          />
-        </RadioGroup>
-      </FormControl>
+      <StyledDiv>
+        <StyledFormControl>
+          <RadioGroup row name="row-radio-buttons-group">
+            <FormControlLabel
+              value="Preset Data"
+              control={<Radio onClick={handlePresetClick} />}
+              label="Preset Data"
+            />
+            <FormControlLabel
+              value="Provide the Link"
+              control={<Radio onClick={handleLinkClick} />}
+              label="Provide the Link"
+            />
+            <FormControlLabel
+              value="Upload File"
+              control={<Radio onClick={handleUploadClick} />}
+              label="Upload File"
+            />
+          </RadioGroup>
+        </StyledFormControl>
+      </StyledDiv>
       {isPreset && <Preset />}
       {isLink && <Link />}
       {isUpload && <Upload />}
