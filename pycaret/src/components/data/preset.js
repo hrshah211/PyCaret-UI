@@ -12,17 +12,16 @@ const Preset = () => {
 
   const handleChange = (event) => {
     fetch("/loadData", {
-      'method': 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(event.target.value)
-    }).then(response => response.json())
-      .catch(error => console.log(error))
+      body: JSON.stringify(event.target.value),
+    })
+      .then((response) => response.json())
       .then((response) => setloadedData(response))
-      .catch(error => console.log('error', error))
+      .catch((error) => console.log("error", error));
     setSelectedDataset(event.target.value);
-    console.log(loadedData)
   };
 
   useEffect(() => {
@@ -50,9 +49,22 @@ const Preset = () => {
           </Select>
         </FormControl>
       </Box>
-      <div>{loadedData['columns']}</div>
-      <br></br>
-      <div>{loadedData['data']}</div>
+      {Object.keys(loadedData).length > 0 && (
+        <table>
+          <tr>
+            {Object.keys(loadedData[0]).map((columns) => (
+              <th key={columns}>{columns}</th>
+            ))}
+          </tr>
+          {Object.keys(loadedData).map((key) => (
+            <tr>
+              {Object.keys(loadedData[key]).map((ind) => (
+                <td key={ind}>{loadedData[key][ind]}</td>
+              ))}
+            </tr>
+          ))}
+        </table>
+      )}
     </>
   );
 };

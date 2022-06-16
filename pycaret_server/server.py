@@ -19,10 +19,8 @@ def datasets():
 def loadData():
     dataset = request.json
     data = get_data(dataset)
-    columns = data.columns.to_list()
-    data = data.to_json()
-    response = {'data':data,'columns':columns}
-    return response
+    data = data.to_json(orient='records')
+    return data
 
 
 if __name__ == "__main__":
