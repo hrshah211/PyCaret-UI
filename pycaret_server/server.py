@@ -19,7 +19,7 @@ def datasets():
 def loadData():
     dataset = request.json
     data = get_data(dataset)
-    data = data.to_json(orient='records')
+    data = data.head(15).to_json(orient='records')
     return data
 
 

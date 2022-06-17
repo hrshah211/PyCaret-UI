@@ -6,6 +6,7 @@ import Select from "@mui/material/Select";
 import TableView from "./tableview";
 import useSynchronousState from "../../../customHooks/useSynchronousState";
 import Loader from "../../loader/loader";
+import { Checkbox } from "@mui/material";
 
 const Preset = () => {
   const [dataFiles, setDataFiles] = useState([]);
@@ -58,6 +59,10 @@ const Preset = () => {
               );
             })}
           </Select>
+          <div>
+            <Checkbox />
+            Load Full Data
+          </div>
         </StyledFormControl>
         {selectedDataset && (
           <BorderedDataSetDiv mt="2">
