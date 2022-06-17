@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { StyledDiv, StyledFormControl } from "../../Styles";
-import Preset from "./preset";
+import { StyledFormControl } from "../../Styles";
+import Preset from "./preset/preset";
 import Link from "./link";
 import Upload from "./upload";
 
@@ -32,7 +32,7 @@ function Options() {
 
   return (
     <>
-      <StyledDiv>
+      <div>
         <StyledFormControl>
           <RadioGroup row name="row-radio-buttons-group">
             <FormControlLabel
@@ -52,7 +52,7 @@ function Options() {
             />
           </RadioGroup>
         </StyledFormControl>
-      </StyledDiv>
+      </div>
       {isPreset && <Preset />}
       {isLink && <Link />}
       {isUpload && <Upload />}

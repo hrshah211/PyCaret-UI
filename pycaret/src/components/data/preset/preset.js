@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import { StyledDiv, StyledFormControl } from "../../Styles";
+import { BorderedDataSetDiv, StyledFormControl } from "../../../Styles";
 import Select from "@mui/material/Select";
+import TableView from "./tableview";
+import useSynchronousState from "../../../customHooks/useSynchronousState";
+import Loader from "../../loader/loader";
 
 const Preset = () => {
   const [dataFiles, setDataFiles] = useState([]);
-  const [loadedData, setloadedData] = useState({});
+  const [loadedData, setLoadedData] = useState({});
+  const loading = useSynchronousState(false);
   const [selectedDataset, setSelectedDataset] = useState("");
 
   const handleChange = (event) => {
+    loading.set(true);
     fetch("/loadData", {
       method: "POST",
       headers: {
@@ -18,7 +23,10 @@ const Preset = () => {
       body: JSON.stringify(event.target.value),
     })
       .then((response) => response.json())
-      .then((response) => setloadedData(response))
+      .then((response) => {
+        setLoadedData(response);
+        loading.set(false);
+      })
       .catch((error) => console.log("error", error));
     setSelectedDataset(event.target.value);
   };
@@ -32,7 +40,7 @@ const Preset = () => {
   }, []);
   return (
     <>
-      <StyledDiv>
+      <div>
         <StyledFormControl>
           <InputLabel id="demo-simple-select-label">Datasets</InputLabel>
           <Select
@@ -43,27 +51,20 @@ const Preset = () => {
             onChange={handleChange}
           >
             {dataFiles.map((data) => {
-              return <MenuItem value={data}>{data}</MenuItem>;
+              return (
+                <MenuItem value={data} key={data}>
+                  {data}
+                </MenuItem>
+              );
             })}
           </Select>
         </StyledFormControl>
-        {Object.keys(loadedData).length > 0 && (
-          <table>
-            <tr>
-              {Object.keys(loadedData[0]).map((columns) => (
-                <th key={columns}>{columns}</th>
-              ))}
-            </tr>
-            {Object.keys(loadedData).map((key) => (
-              <tr>
-                {Object.keys(loadedData[key]).map((ind) => (
-                  <td key={ind}>{loadedData[key][ind]}</td>
-                ))}
-              </tr>
-            ))}
-          </table>
+        {selectedDataset && (
+          <BorderedDataSetDiv mt="2">
+            {loading.get() ? <Loader /> : <TableView loadedData={loadedData} />}
+          </BorderedDataSetDiv>
         )}
-      </StyledDiv>
+      </div>
     </>
   );
 };
