@@ -29,5 +29,5 @@ export const BorderedDataSetDiv = styled.div`
 `;
 
 export const StyledFormControl = styled(FormControl)`
-  width: 1010px;
+  width: 500px;
 `;
