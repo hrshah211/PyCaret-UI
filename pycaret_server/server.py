@@ -1,10 +1,7 @@
 from flask import Flask, request
-from github import Github
 import pandas as pd
 from pycaret.datasets import get_data
 
-g = Github("<ENTER GITHUB TOKEN>")
-repo = g.get_repo("pycaret/pycaret")
 index = pd.read_csv('https://raw.githubusercontent.com/pycaret/pycaret/master/datasets/index.csv')
 
 app = Flask(__name__)
