@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FormControl from "@mui/material/FormControl";
+import { AccordionSummary, Accordion } from "@mui/material";
 
 export const StyledDiv = styled.div`
   margin-top: ${(props) => (props.mt ? props.mt : 0)}px;
@@ -41,4 +42,20 @@ export const BorderedDataSetDiv = styled.div`
 
 export const StyledFormControl = styled(FormControl)`
   width: 500px;
+`;
+
+export const StyledAccordionSummary = styled(AccordionSummary)`
+  height: 80px;
+  background-color: #c0e9ff !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+`;
+
+export const StyledAccordion = styled(Accordion)`
+  margin-bottom: 10px;
+  border-left: 7px solid #083d77;
+  border-right: 1px solid #083d77;
+  border-top: 1px solid #083d77;
+  border-bottom: 1px solid #083d77;
+  border-radius: 10px !important;
 `;

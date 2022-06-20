@@ -66,6 +66,7 @@ const Preset = () => {
               value={selectedDataset}
               label="Datasets"
               onChange={handleDataSetChange}
+              MenuProps={{ style: { height: "300px" } }}
             >
               {dataFiles.map((data) => {
                 return (
