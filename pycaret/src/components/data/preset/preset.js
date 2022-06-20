@@ -15,16 +15,29 @@ const Preset = () => {
   const [loadedData, setLoadedData] = useState({});
   const loading = useSynchronousState(false);
   const [selectedDataset, setSelectedDataset] = useState("");
-  const [checkFullData, setCheckFullData] = useState(false);
+  const checkFullData = useSynchronousState(false);
 
-  const handleChange = (event) => {
+  const handleDataSetChange = (event) => {
     loading.set(true);
+    getData(event.target.value, checkFullData.get());
+    setSelectedDataset(event.target.value);
+  };
+
+  const handleFullDataChange = () => {
+    checkFullData.set(!checkFullData.get());
+    if (selectedDataset) {
+      loading.set(true);
+      getData(selectedDataset, checkFullData.get());
+    }
+  };
+
+  const getData = (dataSet, fullData) => {
     fetch("/loadData", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(event.target.value),
+      body: JSON.stringify({ data: dataSet, fullData: fullData }),
     })
       .then((response) => response.json())
       .then((response) => {
@@ -32,7 +45,6 @@ const Preset = () => {
         loading.set(false);
       })
       .catch((error) => console.log("error", error));
-    setSelectedDataset(event.target.value);
   };
 
   useEffect(() => {
@@ -53,7 +65,7 @@ const Preset = () => {
               id="demo-simple-select"
               value={selectedDataset}
               label="Datasets"
-              onChange={handleChange}
+              onChange={handleDataSetChange}
             >
               {dataFiles.map((data) => {
                 return (
@@ -67,7 +79,12 @@ const Preset = () => {
         </Grid>
         <Grid item xs={4} display="flex" justifyContent="flex-end">
           <FormControlLabel
-            control={<Checkbox value={checkFullData} />}
+            control={
+              <Checkbox
+                value={checkFullData.get()}
+                onChange={handleFullDataChange}
+              />
+            }
             label="Load Full Data"
           />
         </Grid>

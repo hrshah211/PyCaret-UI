@@ -14,9 +14,11 @@ def datasets():
 
 @app.route("/loadData", methods=["POST"])
 def loadData():
-    dataset = request.json
-    data = get_data(dataset)
-    data = data.head(15).to_json(orient='records')
+    requestJSON = request.json
+    data = get_data(requestJSON['data'])
+    if not requestJSON['fullData']:
+        data = data.head(15)
+    data = data.to_json(orient='records')
     return data
 
 
