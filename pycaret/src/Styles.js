@@ -13,6 +13,17 @@ export const StyledDiv = styled.div`
   padding-left: ${(props) => (props.pl ? props.pl : 0)}px;
 `;
 
+export const StyledDivWidth = styled.div`
+  width: ${(props) => (props.w ? props.w : 0)}px;
+`;
+export const StyledDivHeight = styled.div`
+  heiight: ${(props) => (props.h ? props.h : 0)}px;
+`;
+export const StyledDivWidthHeight = styled.div`
+  width: ${(props) => (props.w ? props.w : 0)}px;
+  height: ${(props) => (props.h ? props.h : 0)}px;
+`;
+
 export const BorderedDataSetDiv = styled.div`
   margin-top: 10px;
   border: 1px solid;

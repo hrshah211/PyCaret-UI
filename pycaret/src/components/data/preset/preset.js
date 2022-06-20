@@ -7,12 +7,15 @@ import TableView from "./tableview";
 import useSynchronousState from "../../../customHooks/useSynchronousState";
 import Loader from "../../loader/loader";
 import { Checkbox } from "@mui/material";
+import { Grid } from "@mui/material";
+import { FormControlLabel } from "@mui/material";
 
 const Preset = () => {
   const [dataFiles, setDataFiles] = useState([]);
   const [loadedData, setLoadedData] = useState({});
   const loading = useSynchronousState(false);
   const [selectedDataset, setSelectedDataset] = useState("");
+  const [checkFullData, setCheckFullData] = useState(false);
 
   const handleChange = (event) => {
     loading.set(true);
@@ -41,35 +44,39 @@ const Preset = () => {
   }, []);
   return (
     <>
-      <div>
-        <StyledFormControl>
-          <InputLabel id="demo-simple-select-label">Datasets</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={selectedDataset}
-            label="Datasets"
-            onChange={handleChange}
-          >
-            {dataFiles.map((data) => {
-              return (
-                <MenuItem value={data} key={data}>
-                  {data}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <div>
-            <Checkbox />
-            Load Full Data
-          </div>
-        </StyledFormControl>
-        {selectedDataset && (
-          <BorderedDataSetDiv mt="2">
-            {loading.get() ? <Loader /> : <TableView loadedData={loadedData} />}
-          </BorderedDataSetDiv>
-        )}
-      </div>
+      <Grid container width={"1000px"}>
+        <Grid item xs={8}>
+          <StyledFormControl>
+            <InputLabel id="demo-simple-select-label">Datasets</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={selectedDataset}
+              label="Datasets"
+              onChange={handleChange}
+            >
+              {dataFiles.map((data) => {
+                return (
+                  <MenuItem value={data} key={data}>
+                    {data}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </StyledFormControl>
+        </Grid>
+        <Grid item xs={4} display="flex" justifyContent="flex-end">
+          <FormControlLabel
+            control={<Checkbox value={checkFullData} />}
+            label="Load Full Data"
+          />
+        </Grid>
+      </Grid>
+      {selectedDataset && (
+        <BorderedDataSetDiv mt="2">
+          {loading.get() ? <Loader /> : <TableView loadedData={loadedData} />}
+        </BorderedDataSetDiv>
+      )}
     </>
   );
 };
