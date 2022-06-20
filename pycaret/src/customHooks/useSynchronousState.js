@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 // https://dev.to/bytebodger/synchronous-state-with-react-hooks-1k4f
 export default function useSynchronousState(initialValue) {
    const [state, updateState] = useState(initialValue);

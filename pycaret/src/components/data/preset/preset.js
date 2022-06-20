@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import { BorderedDataSetDiv, StyledFormControl } from "../../../Styles";
+import React, { useEffect, useState } from "react";
+
+import { Checkbox } from "@mui/material";
+import { FormControlLabel } from "@mui/material";
+import { Grid } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import Loader from "../../loader/loader";
+import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import TableView from "./tableview";
 import useSynchronousState from "../../../customHooks/useSynchronousState";
-import Loader from "../../loader/loader";
-import { Checkbox } from "@mui/material";
-import { Grid } from "@mui/material";
-import { FormControlLabel } from "@mui/material";
 
 const Preset = () => {
   const [dataFiles, setDataFiles] = useState([]);

@@ -5,7 +5,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
 import Typography from "@mui/material/Typography";
 
-const setup = () => {
+const Visualization = () => {
   return (
     <>
       <StyledAccordion>
@@ -16,7 +16,7 @@ const setup = () => {
         >
           <Typography>
             <div>
-              <h1>Setup</h1>
+              <h1>Visualization</h1>
             </div>
           </Typography>
           <AccordionDetails></AccordionDetails>
@@ -26,4 +26,4 @@ const setup = () => {
   );
 };
 
-export default setup;
+export default Visualization;

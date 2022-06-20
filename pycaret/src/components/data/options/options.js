@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Link from "../link/link";
+import Preset from "../preset/preset";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import { StyledFormControl } from "../../../Styles";
-import Preset from "../preset/preset";
-import Link from "../link/link";
 import Upload from "../upload/upload";
 
 function Options() {

@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import { Accordion, AccordionSummary } from "@mui/material";
+
 import FormControl from "@mui/material/FormControl";
-import { AccordionSummary, Accordion } from "@mui/material";
+import styled from "styled-components";
 
 export const StyledDiv = styled.div`
   margin-top: ${(props) => (props.mt ? props.mt : 0)}px;
