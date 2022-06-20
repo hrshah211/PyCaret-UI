@@ -19,8 +19,8 @@ const setup = () => {
               <h1>Setup</h1>
             </div>
           </Typography>
-          <AccordionDetails></AccordionDetails>
         </StyledAccordionSummary>
+        <AccordionDetails></AccordionDetails>
       </StyledAccordion>
     </>
   );
