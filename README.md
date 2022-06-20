@@ -20,3 +20,6 @@ Steps to Run Frontend:
 1) cd pycaret
 2) npm i
 3) npm start
+
+  
+  App Deployed on : https://py-caret-ui.vercel.app/
