@@ -7,7 +7,7 @@ Pre Requisites : Python should be below version 3.8.10
 Steps to Run Backend:
 1) cd .\pycaret_server\
 2) pip install virtualenv (First Time)
-3) py -m virtualenv -p=".......<PATH IN C DRIVE>Python\Python38\python.Exe" venv (First Time)
+3) py -m virtualenv -p="C:\Users\.......\AppData\Local\Programs\Python\Python38\python.Exe" venv (First Time)
 4) venv/scripts/activate
 5) pip install -r requirements.txt
 6) python server.py
