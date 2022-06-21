@@ -55,7 +55,9 @@ const Preset = () => {
         Accept: "application/json",
       },
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
         setDataFiles(data.files);
