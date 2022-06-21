@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import pandas as pd
 from pycaret.datasets import get_data
 
@@ -9,7 +9,9 @@ app = Flask(__name__)
 
 @app.route("/datasets")
 def datasets():
-    return {"files": index['Dataset'].tolist()}
+    
+    print("hi")
+    return jsonify({"files": index['Dataset'].tolist()})
 
 
 @app.route("/loadData", methods=["POST"])
