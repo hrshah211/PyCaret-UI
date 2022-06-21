@@ -49,12 +49,11 @@ const Preset = () => {
   };
 
   useEffect(() => {
-    fetch("/datasets")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+    fetch("/datasets").then((res) =>
+      res.json().then((data) => {
         setDataFiles(data.files);
-      });
+      })
+    );
   }, []);
   return (
     <>
