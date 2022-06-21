@@ -53,11 +53,13 @@ const Preset = () => {
       headers: {
         accepts: "application/json",
       },
-    }).then((res) =>
-      res.json().then((data) => {
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
         setDataFiles(data.files);
       })
-    );
+      .catch((error) => console.log("error", error));
   }, []);
   return (
     <>
