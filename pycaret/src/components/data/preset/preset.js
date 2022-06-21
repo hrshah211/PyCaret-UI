@@ -49,7 +49,12 @@ const Preset = () => {
   };
 
   useEffect(() => {
-    fetch("/datasets")
+    fetch("/datasets", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
