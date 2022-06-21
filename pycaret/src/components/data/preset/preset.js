@@ -49,7 +49,11 @@ const Preset = () => {
   };
 
   useEffect(() => {
-    fetch("/datasets").then((res) =>
+    fetch("/datasets", {
+      headers: {
+        accepts: "application/json",
+      },
+    }).then((res) =>
       res.json().then((data) => {
         setDataFiles(data.files);
       })
