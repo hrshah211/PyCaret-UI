@@ -11,7 +11,9 @@ app = Flask(__name__)
 def datasets():
     
     print("hi")
-    return jsonify({"files": index['Dataset'].tolist()})
+    response = jsonify({"files": index['Dataset'].tolist()})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 @app.route("/loadData", methods=["POST"])
