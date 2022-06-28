@@ -23,5 +23,5 @@ Steps to Run Frontend:
 3) npm start
 
   
-APP Deployed on : https://py-caret-ui.vercel.app/
+APP Deployed on : https://py-caret-ui.vercel.app/ \n
 API Deployed on : https://py-caret-api.herokuapp.com/
