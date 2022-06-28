@@ -11,7 +11,7 @@ Steps to Run Backend:
 4) py -m virtualenv venv (If Python version is older)
 5) venv/scripts/activate
 6) pip install -r requirements.txt
-7) python server.py
+7) python app.py
 
   
 Use 'pip freeze > requirements.txt' if there are changes in the packages. 
