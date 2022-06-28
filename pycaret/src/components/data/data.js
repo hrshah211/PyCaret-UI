@@ -10,15 +10,9 @@ const Data = () => {
   return (
     <>
       <StyledAccordion>
-        <StyledAccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>
-            <div>
-              <h1>Data Load</h1>
-            </div>
+        <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography variant="h4" component="div">
+            Data Load
           </Typography>
         </StyledAccordionSummary>
         <AccordionDetails>

@@ -1,9 +1,7 @@
 import { BorderedDataSetDiv, StyledFormControl } from "../../../Styles";
+import {Checkbox, FormControlLabel, Grid} from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-import { Checkbox } from "@mui/material";
-import { FormControlLabel } from "@mui/material";
-import { Grid } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import Loader from "../../loader/loader";
 import MenuItem from "@mui/material/MenuItem";
@@ -59,11 +57,9 @@ const Preset = () => {
     <>
       <Grid container width={"1000px"}>
         <Grid item xs={8}>
-          <StyledFormControl>
-            <InputLabel id="demo-simple-select-label">Datasets</InputLabel>
+          <StyledFormControl w="500">
+            <InputLabel>Datasets</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
               value={selectedDataset}
               label="Datasets"
               onChange={handleDataSetChange}

@@ -34,7 +34,7 @@ function Options() {
   return (
     <>
       <div>
-        <StyledFormControl>
+        <StyledFormControl w="500">
           <RadioGroup row name="row-radio-buttons-group">
             <FormControlLabel
               value="Preset Data"

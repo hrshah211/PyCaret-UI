@@ -42,7 +42,7 @@ export const BorderedDataSetDiv = styled.div`
 `;
 
 export const StyledFormControl = styled(FormControl)`
-  width: 500px;
+  width: ${(props) => (props.w ? props.w : 0)}px;
 `;
 
 export const StyledAccordionSummary = styled(AccordionSummary)`

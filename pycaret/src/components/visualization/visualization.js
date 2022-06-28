@@ -10,15 +10,9 @@ const Visualization = () => {
   return (
     <>
       <StyledAccordion>
-        <StyledAccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>
-            <div>
-              <h1>Visualization</h1>
-            </div>
+        <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography variant="h4" component="div">
+            Visualization
           </Typography>
         </StyledAccordionSummary>
         <AccordionDetails>
