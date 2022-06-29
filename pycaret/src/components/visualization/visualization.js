@@ -1,19 +1,18 @@
-import { StyledAccordion, StyledAccordionSummary } from "../../Styles";
+import { StyledAccordion, StyledAccordionSummary, StyledTypography } from "../../Styles";
 
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Plot from "react-plotly.js";
 import React from "react";
-import Typography from "@mui/material/Typography";
 
 const Visualization = () => {
   return (
     <>
       <StyledAccordion>
         <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h4" component="div">
+          <StyledTypography variant="h5" component="div" style={{ fontWeight: 550 }}>
             Visualization
-          </Typography>
+          </StyledTypography>
         </StyledAccordionSummary>
         <AccordionDetails>
           <Plot

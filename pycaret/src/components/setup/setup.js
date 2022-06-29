@@ -1,19 +1,19 @@
-import { StyledAccordion, StyledAccordionSummary } from "../../Styles";
+import { StyledAccordion, StyledAccordionSummary, StyledTypography } from "../../Styles";
 
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MissingValues from "./missing_values/missingValues";
 import React from "react";
-import Typography from "@mui/material/Typography";
 
 const setup = () => {
   return (
     <>
+    {/* https://github.com/pycaret/pycaret/blob/12b488174f0b48b01a7ea83dde96bf910677590f/pycaret/regression/functional.py */}
       <StyledAccordion>
         <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h4" component="div">
+          <StyledTypography variant="h5" component="div" style={{ fontWeight: 550 }}>
             Setup
-          </Typography>
+          </StyledTypography>
         </StyledAccordionSummary>
         <AccordionDetails>
           <MissingValues />

@@ -1,20 +1,46 @@
-import { Grid, InputLabel, MenuItem, Select } from "@mui/material";
+import { InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
+import {
+  StyledFormControl,
+  StyledGrid,
+  StyledTypography,
+} from "../../../Styles";
 
-import { StyledFormControl } from "../../../Styles";
 import setupParameters from "../setupParameters";
 
 const MissingValues = () => {
-  const [imputationType, setImputationType] = useState("");
+  const [imputationType, setImputationType] = useState("Simple");
+  const [numericImputation, setNumericImputation] = useState("Mean");
+  const [categoricalImputation, setCategoricalImputation] =
+    useState("Constant");
+  const [iterativeImputationIterations, setIterativeImputationIterations] =
+    useState(0);
 
   const handleImputationTypeChange = (event) => {
     setImputationType(event.target.value);
   };
+  const handleNumericImputationChange = (event) => {
+    setNumericImputation(event.target.value);
+  };
+  const handleCategoricalImputationChange = (event) => {
+    setCategoricalImputation(event.target.value);
+  };
+  const handleIterativeImputationIterationsChange = (event) => {
+    setIterativeImputationIterations(event.target.value);
+  };
   return (
     <>
-      <Grid container width={"100%"}>
-        <Grid item xs={2}>
-          <StyledFormControl w="240">
+      <StyledTypography
+        variant="h6"
+        component="div"
+        style={{ fontWeight: 600 }}
+        pb={1}
+      >
+        Missing Values
+      </StyledTypography>
+      <StyledGrid container pb={1}>
+        <StyledGrid item xs={4} pr={1}>
+          <StyledFormControl fullWidth>
             <InputLabel>Imputation Type</InputLabel>
             <Select
               value={imputationType}
@@ -30,16 +56,16 @@ const MissingValues = () => {
               })}
             </Select>
           </StyledFormControl>
-        </Grid>
-        <Grid item xs={2}>
-          <StyledFormControl w="240">
+        </StyledGrid>
+        <StyledGrid item xs={4}>
+          <StyledFormControl fullWidth>
             <InputLabel>Numeric Imputation</InputLabel>
             <Select
-              value={imputationType}
+              value={numericImputation}
               label="Numeric Imputation"
-              onChange={handleImputationTypeChange}
+              onChange={handleNumericImputationChange}
             >
-              {setupParameters.missing_values.imputation_type.map((data) => {
+              {setupParameters.missing_values.numeric_imputation.map((data) => {
                 return (
                   <MenuItem value={data.name} key={data.code}>
                     {data.name}
@@ -48,45 +74,31 @@ const MissingValues = () => {
               })}
             </Select>
           </StyledFormControl>
-        </Grid>
-        <Grid item xs={2}>
-          <StyledFormControl w="240">
+        </StyledGrid>
+        <StyledGrid item xs={4} pl={1}>
+          <StyledFormControl fullWidth>
             <InputLabel>Categorical Imputation</InputLabel>
             <Select
-              value={imputationType}
+              value={categoricalImputation}
               label="Categorical Imputation"
-              onChange={handleImputationTypeChange}
+              onChange={handleCategoricalImputationChange}
             >
-              {setupParameters.missing_values.imputation_type.map((data) => {
-                return (
-                  <MenuItem value={data.name} key={data.code}>
-                    {data.name}
-                  </MenuItem>
-                );
-              })}
+              {setupParameters.missing_values.categorical_imputation.map(
+                (data) => {
+                  return (
+                    <MenuItem value={data.name} key={data.code}>
+                      {data.name}
+                    </MenuItem>
+                  );
+                }
+              )}
             </Select>
           </StyledFormControl>
-        </Grid>
-        <Grid item xs={2}>
-          <StyledFormControl w="240">
-            <InputLabel>Iterative Imputation Iterations</InputLabel>
-            <Select
-              value={imputationType}
-              label="Iterative Imputation Iterations"
-              onChange={handleImputationTypeChange}
-            >
-              {setupParameters.missing_values.imputation_type.map((data) => {
-                return (
-                  <MenuItem value={data.name} key={data.code}>
-                    {data.name}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </StyledFormControl>
-        </Grid>
-        <Grid item xs={2}>
-          <StyledFormControl w="240">
+        </StyledGrid>
+      </StyledGrid>
+      <StyledGrid container pb={1}>
+        <StyledGrid item xs={4} pr={1}>
+          <StyledFormControl fullWidth>
             <InputLabel>Numeric Iterative Imputer</InputLabel>
             <Select
               value={imputationType}
@@ -102,9 +114,22 @@ const MissingValues = () => {
               })}
             </Select>
           </StyledFormControl>
-        </Grid>
-        <Grid item xs={2}>
-          <StyledFormControl w="240">
+        </StyledGrid>
+        <StyledGrid item xs={4}>
+          <StyledFormControl fullWidth>
+            <TextField
+              label="Iterative Imputation Iterations"
+              type="number"
+              value={iterativeImputationIterations}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onchange={handleIterativeImputationIterationsChange}
+            />
+          </StyledFormControl>
+        </StyledGrid>
+        <StyledGrid item xs={4} pl={1}>
+          <StyledFormControl fullWidth>
             <InputLabel>Categorical Iterative Imputer</InputLabel>
             <Select
               value={imputationType}
@@ -120,8 +145,8 @@ const MissingValues = () => {
               })}
             </Select>
           </StyledFormControl>
-        </Grid>
-      </Grid>
+        </StyledGrid>
+      </StyledGrid>
     </>
   );
 };
