@@ -1,5 +1,9 @@
-import { BorderedDataSetDiv, StyledFormControl } from "../../../Styles";
-import {Checkbox, FormControlLabel, Grid} from "@mui/material";
+import {
+  BorderedDataSetDiv,
+  StyledFormControl,
+  StyledGrid,
+} from "../../../Styles";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import InputLabel from "@mui/material/InputLabel";
@@ -55,8 +59,8 @@ const Preset = () => {
   }, []);
   return (
     <>
-      <Grid container width={"1000px"}>
-        <Grid item xs={8}>
+      <StyledGrid container>
+        <StyledGrid item xs={4}>
           <StyledFormControl w="500">
             <InputLabel>Datasets</InputLabel>
             <Select
@@ -74,8 +78,17 @@ const Preset = () => {
               })}
             </Select>
           </StyledFormControl>
-        </Grid>
-        <Grid item xs={4} display="flex" justifyContent="flex-end">
+        </StyledGrid>
+        <StyledGrid item xs={4} display="flex" justifyContent={"center"} alignItems={"center"}>
+          {selectedDataset && !loading.get() && (
+            <>
+              Shape {loadedData.length} rows and{" "}
+              {Object.keys(loadedData[0]).length} columns
+            </>
+          )}
+        </StyledGrid>
+
+        <StyledGrid item xs={4} display="flex" justifyContent="flex-end">
           <FormControlLabel
             control={
               <Checkbox
@@ -85,8 +98,8 @@ const Preset = () => {
             }
             label="Load Full Data"
           />
-        </Grid>
-      </Grid>
+        </StyledGrid>
+      </StyledGrid>
       {selectedDataset && (
         <BorderedDataSetDiv mt="2">
           {loading.get() ? <Loader /> : <TableView loadedData={loadedData} />}

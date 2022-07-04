@@ -10,7 +10,7 @@ import TableRow from "@mui/material/TableRow";
 const TableView = ({ loadedData }) => {
   return (
     Object.keys(loadedData).length > 0 && (
-      <TableContainer sx={{ maxHeight: 300, maxWidth: 1000 }} component={Paper}>
+      <TableContainer sx={{ maxHeight: 300 }} component={Paper}>
         <Table stickyHeader aria-label="simple table">
           <TableHead>
             <TableRow>

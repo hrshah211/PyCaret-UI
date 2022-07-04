@@ -139,7 +139,7 @@ const MissingValues = () => {
       </StyledTypography>
       <StyledGrid container pb={1}>
         <StyledGrid item xs={3} pr={1}>
-          <StyledFormControl fullWidth>
+          <StyledFormControl>
             <InputLabel>Imputation Type</InputLabel>
             <Select
               value={imputationType.name}
@@ -161,7 +161,7 @@ const MissingValues = () => {
         <>
           <StyledGrid container pb={1}>
             <StyledGrid item xs={3} pr={1}>
-              <StyledFormControl fullWidth>
+              <StyledFormControl>
                 <InputLabel>Numeric Imputation</InputLabel>
                 <Select
                   value={numericImputation.name}
@@ -182,7 +182,7 @@ const MissingValues = () => {
             </StyledGrid>
             {numericImputation.name === "Other" && (
               <StyledGrid item xs={3} pr={1}>
-                <StyledFormControl fullWidth>
+                <StyledFormControl>
                   <TextField
                     type="number"
                     label="Other Numeric Imputation"
@@ -196,7 +196,7 @@ const MissingValues = () => {
               </StyledGrid>
             )}
             <StyledGrid item xs={3} pr={1}>
-              <StyledFormControl fullWidth>
+              <StyledFormControl>
                 <InputLabel>Categorical Imputation</InputLabel>
                 <Select
                   value={categoricalImputation.name}
@@ -217,7 +217,7 @@ const MissingValues = () => {
             </StyledGrid>
             {categoricalImputation.name === "Other" && (
               <StyledGrid item xs={3} pr={1}>
-                <StyledFormControl fullWidth>
+                <StyledFormControl>
                   <TextField
                     label="Other Categorical Imputation"
                     value={otherCategoricalImputation}
@@ -233,7 +233,7 @@ const MissingValues = () => {
         <>
           <StyledGrid container pb={1}>
             <StyledGrid item xs={4} pr={1}>
-              <StyledFormControl fullWidth>
+              <StyledFormControl>
                 <InputLabel>Numeric Iterative Imputer</InputLabel>
                 <Select
                   value={numericIterativeImputer.name}
@@ -251,7 +251,7 @@ const MissingValues = () => {
               </StyledFormControl>
             </StyledGrid>
             <StyledGrid item xs={4}>
-              <StyledFormControl fullWidth>
+              <StyledFormControl>
                 <TextField
                   label="Iterative Imputation Iterations"
                   type="number"
@@ -264,7 +264,7 @@ const MissingValues = () => {
               </StyledFormControl>
             </StyledGrid>
             <StyledGrid item xs={4} pl={1}>
-              <StyledFormControl fullWidth>
+              <StyledFormControl>
                 <InputLabel>Categorical Iterative Imputer</InputLabel>
                 <Select
                   value={categoricalIterativeImputer.name}

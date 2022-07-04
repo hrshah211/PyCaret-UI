@@ -34,7 +34,6 @@ export const BorderedDataSetDiv = styled.div`
   padding-right: 5px;
   padding-bottom: 5px;
   padding-left: 5px;
-  width: 1000px;
   height: 300px;
   display: flex;
   align-items: center;
@@ -42,7 +41,10 @@ export const BorderedDataSetDiv = styled.div`
 `;
 
 export const StyledFormControl = styled(FormControl)`
-  width: ${(props) => (props.w ? props.w : 0)}px;
+  width: 100%;
+  @media only screen and (max-width: 100px) {
+    width: ${(props) => (props.w ? props.w : 0)}px;
+  }
 `;
 
 export const StyledAccordionSummary = styled(AccordionSummary)`
