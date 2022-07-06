@@ -36,21 +36,13 @@ function Options() {
       <div>
         <StyledFormControl w="500">
           <RadioGroup row name="row-radio-buttons-group">
-            <FormControlLabel
-              value="Preset Data"
-              control={<Radio onClick={handlePresetClick} />}
-              label="Preset Data"
-            />
+            <FormControlLabel value="Preset Data" control={<Radio onClick={handlePresetClick} />} label="Preset Data" />
             <FormControlLabel
               value="Provide the Link"
               control={<Radio onClick={handleLinkClick} />}
               label="Provide the Link"
             />
-            <FormControlLabel
-              value="Upload File"
-              control={<Radio onClick={handleUploadClick} />}
-              label="Upload File"
-            />
+            <FormControlLabel value="Upload File" control={<Radio onClick={handleUploadClick} />} label="Upload File" />
           </RadioGroup>
         </StyledFormControl>
       </div>

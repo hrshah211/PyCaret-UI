@@ -21,10 +21,7 @@ const TableView = ({ loadedData }) => {
           </TableHead>
           <TableBody>
             {Object.keys(loadedData).map((key) => (
-              <TableRow
-                key={key}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
+              <TableRow key={key} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
                 {Object.keys(loadedData[key]).map((ind) => (
                   <TableCell component="th" scope="row" key={ind}>
                     {loadedData[key][ind]}

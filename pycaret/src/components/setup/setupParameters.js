@@ -4,163 +4,163 @@ const setupParameters = {
       {
         code: "mode",
         name: "Mode",
-        default: true
+        default: true,
       },
       {
         code: "drop",
-        name: "Drop"
+        name: "Drop",
       },
       {
         code: "other",
-        name: "Other"
-      }
+        name: "Other",
+      },
     ],
     imputation_type: [
       {
         code: "simple",
         name: "Simple",
-        default: true
+        default: true,
       },
       {
         code: "iterative",
-        name: "Iterative"
+        name: "Iterative",
       },
       {
         code: "none",
-        name: "None"
-      }
+        name: "None",
+      },
     ],
     numeric_imputation: [
       {
         code: "mean",
         name: "Mean",
-        default: true
+        default: true,
       },
       {
         code: "median",
-        name: "Median"
+        name: "Median",
       },
       {
         code: "mode",
-        name: "Mode"
+        name: "Mode",
       },
       {
         code: "drop",
-        name: "Drop"
+        name: "Drop",
       },
       {
         code: "knn",
-        name: "KNN"
+        name: "KNN",
       },
       {
         code: "other",
-        name: "Other"
-      }
+        name: "Other",
+      },
     ],
     regressors: [
       {
         code: "lr",
-        name: "Linear Regression"
+        name: "Linear Regression",
       },
       {
         code: "lasso",
-        name: "Lasso Regression"
+        name: "Lasso Regression",
       },
       {
         code: "ridge",
-        name: "Ridge Regression"
+        name: "Ridge Regression",
       },
       {
         code: "en",
-        name: "Elastic Net"
+        name: "Elastic Net",
       },
       {
         code: "lar",
-        name: "Least Angle Regression"
+        name: "Least Angle Regression",
       },
       {
         code: "llar",
-        name: "Lasso Least Angle Regression"
+        name: "Lasso Least Angle Regression",
       },
       {
         code: "omp",
-        name: "Orthogonal Matching Pursuit"
+        name: "Orthogonal Matching Pursuit",
       },
       {
         code: "br",
-        name: "Bayesian Ridge"
+        name: "Bayesian Ridge",
       },
       {
         code: "ard",
-        name: "Automatic Relevance Determination"
+        name: "Automatic Relevance Determination",
       },
       {
         code: "par",
-        name: "Passive Aggressive Regressor"
+        name: "Passive Aggressive Regressor",
       },
       {
         code: "ransac",
-        name: "Random Sample Consensus"
+        name: "Random Sample Consensus",
       },
       {
         code: "tr",
-        name: "TheilSen Regressor"
+        name: "TheilSen Regressor",
       },
       {
         code: "huber",
-        name: "Huber Regressor"
+        name: "Huber Regressor",
       },
       {
         code: "kr",
-        name: "Kernel Ridge"
+        name: "Kernel Ridge",
       },
       {
         code: "svm",
-        name: "Support Vector Regression"
+        name: "Support Vector Regression",
       },
       {
         code: "knn",
-        name: "K Neighbors Regressor"
+        name: "K Neighbors Regressor",
       },
       {
         code: "dt",
-        name: "Decision Tree Regressor"
+        name: "Decision Tree Regressor",
       },
       {
         code: "rf",
-        name: "Random Forest Regressor"
+        name: "Random Forest Regressor",
       },
       {
         code: "et",
-        name: "Extra Trees Regressor"
+        name: "Extra Trees Regressor",
       },
       {
         code: "ada",
-        name: "AdaBoost Regressor"
+        name: "AdaBoost Regressor",
       },
       {
         code: "gbr",
-        name: "Gradient Boosting Regressor"
+        name: "Gradient Boosting Regressor",
       },
       {
         code: "mlp",
-        name: "MLP Regressor"
+        name: "MLP Regressor",
       },
       {
         code: "xgboost",
-        name: "Extreme Gradient Boosting"
+        name: "Extreme Gradient Boosting",
       },
       {
         code: "lightgbm",
         name: "Light Gradient Boosting Machine",
-        default: true
+        default: true,
       },
       {
         code: "catboost",
-        name: "CatBoost Regressor"
-      }
-    ]
-  }
+        name: "CatBoost Regressor",
+      },
+    ],
+  },
 };
 
 export default setupParameters;

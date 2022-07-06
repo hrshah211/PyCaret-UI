@@ -10,13 +10,7 @@ function navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <StyledTypography
-            variant="h4"
-            component="div"
-            align="left"
-            sx={{ flexGrow: 1 }}
-            style={{ fontWeight: 600 }}
-          >
+          <StyledTypography variant="h4" component="div" align="left" sx={{ flexGrow: 1 }} style={{ fontWeight: 600 }}>
             PyCaret
           </StyledTypography>
         </Toolbar>

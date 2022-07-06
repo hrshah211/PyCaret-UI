@@ -1,8 +1,4 @@
-import {
-  BorderedDataSetDiv,
-  StyledFormControl,
-  StyledGrid,
-} from "../../../Styles";
+import { BorderedDataSetDiv, StyledFormControl, StyledGrid } from "../../../Styles";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
@@ -82,20 +78,14 @@ const Preset = () => {
         <StyledGrid item xs={4} display="flex" justifyContent={"center"} alignItems={"center"}>
           {selectedDataset && !loading.get() && (
             <>
-              Shape {loadedData.length} rows and{" "}
-              {Object.keys(loadedData[0]).length} columns
+              Shape {loadedData.length} rows and {Object.keys(loadedData[0]).length} columns
             </>
           )}
         </StyledGrid>
 
         <StyledGrid item xs={4} display="flex" justifyContent="flex-end">
           <FormControlLabel
-            control={
-              <Checkbox
-                value={checkFullData.get()}
-                onChange={handleFullDataChange}
-              />
-            }
+            control={<Checkbox value={checkFullData.get()} onChange={handleFullDataChange} />}
             label="Load Full Data"
           />
         </StyledGrid>
