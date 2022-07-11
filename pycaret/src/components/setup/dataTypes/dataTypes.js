@@ -1,11 +1,11 @@
-import { Box, Chip, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
+import { Box, Chip, InputLabel, MenuItem, Select } from "@mui/material";
 import {
   SetCategoricalFeatures,
   SetDateFeatures,
   SetIgnoredFeatures,
   SetNumericFeatures,
 } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
-import { StyledGrid, StyledTypography } from "../../../Styles";
+import { StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
 
 import React from "react";
 import { connect } from "react-redux";
@@ -34,92 +34,100 @@ const DataTypes = (props) => {
       </StyledTypography>
       <StyledGrid container pb={1}>
         <StyledGrid item xs={3} pr={1}>
-          <InputLabel>Numeric Features</InputLabel>
-          <Select
-            multiple
-            value={props.numericFeatures}
-            onChange={handleNumericFeaturesChange}
-            input={<OutlinedInput />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-          >
-            {props.dataColumns.map((name) => (
-              <MenuItem key={name} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
+          <StyledFormControl>
+            <InputLabel>Numeric Features</InputLabel>
+            <Select
+              multiple
+              label="Numeric Features"
+              value={props.numericFeatures}
+              onChange={handleNumericFeaturesChange}
+              renderValue={(selected) => (
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </Box>
+              )}
+            >
+              {props.dataColumns.map((name) => (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </StyledFormControl>
         </StyledGrid>
         <StyledGrid item xs={3} pr={1}>
-          <InputLabel>Categorical Features</InputLabel>
-          <Select
-            multiple
-            value={props.categoricalFeatures}
-            onChange={handleCategoricalFeaturesChange}
-            input={<OutlinedInput />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-          >
-            {props.dataColumns.map((name) => (
-              <MenuItem key={name} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
+          <StyledFormControl>
+            <InputLabel>Categorical Features</InputLabel>
+            <Select
+              multiple
+              label="Categorical Features"
+              value={props.categoricalFeatures}
+              onChange={handleCategoricalFeaturesChange}
+              renderValue={(selected) => (
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </Box>
+              )}
+            >
+              {props.dataColumns.map((name) => (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </StyledFormControl>
         </StyledGrid>
         <StyledGrid item xs={3} pr={1}>
-          <InputLabel>Date Features</InputLabel>
-          <Select
-            multiple
-            value={props.dateFeatures}
-            onChange={handleDateFeaturesChange}
-            input={<OutlinedInput />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-          >
-            {props.dataColumns.map((name) => (
-              <MenuItem key={name} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
+          <StyledFormControl>
+            <InputLabel>Date Features</InputLabel>
+            <Select
+              multiple
+              label="Date Features"
+              value={props.dateFeatures}
+              onChange={handleDateFeaturesChange}
+              renderValue={(selected) => (
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </Box>
+              )}
+            >
+              {props.dataColumns.map((name) => (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </StyledFormControl>
         </StyledGrid>
         <StyledGrid item xs={3}>
-          <InputLabel>Ignored Features</InputLabel>
-          <Select
-            multiple
-            value={props.ignoredFeatures}
-            onChange={handleIgnoredFeaturesChange}
-            input={<OutlinedInput />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-          >
-            {props.dataColumns.map((name) => (
-              <MenuItem key={name} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-          </Select>
+          <StyledFormControl>
+            <InputLabel>Ignored Features</InputLabel>
+            <Select
+              multiple
+              label="Ignored Features"
+              value={props.ignoredFeatures}
+              onChange={handleIgnoredFeaturesChange}
+              renderValue={(selected) => (
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                  {selected.map((value) => (
+                    <Chip key={value} label={value} />
+                  ))}
+                </Box>
+              )}
+            >
+              {props.dataColumns.map((name) => (
+                <MenuItem key={name} value={name}>
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </StyledFormControl>
         </StyledGrid>
       </StyledGrid>
     </>
