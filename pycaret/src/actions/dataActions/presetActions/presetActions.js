@@ -6,3 +6,20 @@ export const SetSelectedDataset = (payload) => {
     payload: payload,
   };
 };
+
+export const SetDataFiles = (payload) => {
+  return {
+    type: presetActionTypes.SET_DATA_FILES,
+    payload: payload,
+  };
+};
+
+
+export const SetLoadedData = (payload) => {
+  return {
+    type: presetActionTypes.SET_DATA,
+    payload: payload,
+  };
+};
+
+

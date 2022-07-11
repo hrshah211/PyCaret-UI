@@ -1,4 +1,4 @@
-import { missingValuesActionTypes } from "../../actionTypes/setupActionTypes/missingValuesActionTypes";
+import { missingValuesActionTypes } from "../../../actionTypes/setupActionTypes/missingValuesActionTypes/missingValuesActionTypes";
 
 export const SetImputationType = (payload) => {
   return {

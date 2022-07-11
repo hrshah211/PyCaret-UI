@@ -8,7 +8,7 @@ import {
   SetNumericIterativeImputer,
   SetOtherCategoricalImputation,
   SetOtherNumericImputation,
-} from "../../../actions/setupActions/missingValuesActions";
+} from "../../../actions/setupActions/missingValuesActions/missingValuesActions";
 import { StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
 
 import React from "react";

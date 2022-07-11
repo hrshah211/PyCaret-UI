@@ -6,25 +6,26 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { connect } from "react-redux";
 
-const TableView = ({ loadedData }) => {
+const TableView = (props) => {
   return (
-    Object.keys(loadedData).length > 0 && (
+    props.dataColumns.length > 0 && (
       <TableContainer sx={{ maxHeight: 300 }} component={Paper}>
         <Table stickyHeader aria-label="simple table">
           <TableHead>
             <TableRow>
-              {Object.keys(loadedData[0]).map((columns) => (
+              {props.dataColumns.map((columns) => (
                 <TableCell key={columns}>{columns}</TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {Object.keys(loadedData).map((key) => (
+            {Object.keys(props.loadedData).map((key) => (
               <TableRow key={key} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-                {Object.keys(loadedData[key]).map((ind) => (
+                {Object.keys(props.loadedData[key]).map((ind) => (
                   <TableCell component="th" scope="row" key={ind}>
-                    {loadedData[key][ind]}
+                    {props.loadedData[key][ind]}
                   </TableCell>
                 ))}
               </TableRow>
@@ -36,4 +37,11 @@ const TableView = ({ loadedData }) => {
   );
 };
 
-export default TableView;
+const mapStateToProps = (state) => {
+  return {
+    loadedData: state?.presetReducer?.preset?.loadedData ? state.presetReducer.preset.loadedData : {},
+    dataColumns: state?.presetReducer?.preset?.dataColumns ? state.presetReducer.preset.dataColumns : [],
+  };
+};
+
+export default connect(mapStateToProps)(TableView);

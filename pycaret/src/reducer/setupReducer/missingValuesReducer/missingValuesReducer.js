@@ -1,5 +1,5 @@
-import initialState from "../../store/initialState";
-import { missingValuesActionTypes } from "../../actionTypes/setupActionTypes/missingValuesActionTypes";
+import initialState from "../../../store/initialState";
+import { missingValuesActionTypes } from "../../../actionTypes/setupActionTypes/missingValuesActionTypes/missingValuesActionTypes";
 
 const MissingValuesReducer = (state = initialState, action) => {
   switch (action.type) {
