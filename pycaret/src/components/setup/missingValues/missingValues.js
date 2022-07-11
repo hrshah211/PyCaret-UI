@@ -26,9 +26,8 @@ const getSelectedValue = (source, value) => {
 };
 
 const MissingValues = (props) => {
-  
   //#region Imputation Type
-  
+
   const handleImputationTypeChange = (event) => {
     props.SetImputationType(
       getSelectedValue(Object.entries(setupParameters.missing_values.imputation_type), event.target.value)
@@ -251,25 +250,25 @@ const MissingValues = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    imputationType: state?.missingValues?.imputationType
-      ? state.missingValues.imputationType
+    imputationType: state?.missingValuesReducer?.missingValues?.imputationType
+      ? state.missingValuesReducer.missingValues.imputationType
       : getDefaultValue(Object.entries(setupParameters.missing_values.imputation_type)),
-    numericImputation: state?.missingValues?.numericImputation
-      ? state.missingValues.numericImputation
+    numericImputation: state?.missingValuesReducer?.missingValues?.numericImputation
+      ? state.missingValuesReducer.missingValues.numericImputation
       : getDefaultValue(Object.entries(setupParameters.missing_values.numeric_imputation)),
-    otherNumericImputation: state?.missingValues?.otherNumericImputation,
-    categoricalImputation: state?.missingValues?.categoricalImputation
-      ? state.missingValues.categoricalImputation
+    otherNumericImputation: state?.missingValuesReducer?.missingValues?.otherNumericImputation,
+    categoricalImputation: state?.missingValuesReducer?.missingValues?.categoricalImputation
+      ? state.missingValuesReducer.missingValues.categoricalImputation
       : getDefaultValue(Object.entries(setupParameters.missing_values.categorical_imputation)),
-    otherCategoricalImputation: state?.missingValues?.otherCategoricalImputation,
-    numericIterativeImputer: state?.missingValues?.numericIterativeImputer
-      ? state.missingValues.numericIterativeImputer
+    otherCategoricalImputation: state?.missingValuesReducer?.missingValues?.otherCategoricalImputation,
+    numericIterativeImputer: state?.missingValuesReducer?.missingValues?.numericIterativeImputer
+      ? state.missingValuesReducer.missingValues.numericIterativeImputer
       : getDefaultValue(Object.entries(setupParameters.missing_values.regressors)),
-    iterativeImputationIterations: state?.missingValues?.iterativeImputationIterations
-      ? state.missingValues.iterativeImputationIterations
+    iterativeImputationIterations: state?.missingValuesReducer?.missingValues?.iterativeImputationIterations
+      ? state.missingValuesReducer.missingValues.iterativeImputationIterations
       : 5,
-    categoricalIterativeImputer: state?.missingValues?.categoricalIterativeImputer
-      ? state.missingValues.categoricalIterativeImputer
+    categoricalIterativeImputer: state?.missingValuesReducer?.missingValues?.categoricalIterativeImputer
+      ? state.missingValuesReducer.missingValues.categoricalIterativeImputer
       : getDefaultValue(Object.entries(setupParameters.missing_values.regressors)),
   };
 };

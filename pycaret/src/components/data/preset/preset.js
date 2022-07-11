@@ -6,27 +6,28 @@ import InputLabel from "@mui/material/InputLabel";
 import Loader from "../../loader/loader";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { SetSelectedDataset } from "../../../actions/dataActions/presetActions/presetActions";
 import TableView from "./tableview";
+import { connect } from "react-redux";
 import useSynchronousState from "../../../customHooks/useSynchronousState";
 
-const Preset = () => {
+const Preset = (props) => {
   const [dataFiles, setDataFiles] = useState([]);
   const [loadedData, setLoadedData] = useState({});
   const loading = useSynchronousState(false);
-  const [selectedDataset, setSelectedDataset] = useState("");
   const checkFullData = useSynchronousState(false);
 
   const handleDataSetChange = (event) => {
     loading.set(true);
     getData(event.target.value, checkFullData.get());
-    setSelectedDataset(event.target.value);
+    props.SetSelectedDataset(event.target.value);
   };
 
   const handleFullDataChange = () => {
     checkFullData.set(!checkFullData.get());
-    if (selectedDataset) {
+    if (props.selectedDataset) {
       loading.set(true);
-      getData(selectedDataset, checkFullData.get());
+      getData(props.selectedDataset, checkFullData.get());
     }
   };
 
@@ -40,6 +41,7 @@ const Preset = () => {
     })
       .then((response) => response.json())
       .then((response) => {
+        console.log(response)
         setLoadedData(response);
         loading.set(false);
       })
@@ -60,7 +62,7 @@ const Preset = () => {
           <StyledFormControl w="500">
             <InputLabel>Datasets</InputLabel>
             <Select
-              value={selectedDataset}
+              value={props.selectedDataset}
               label="Datasets"
               onChange={handleDataSetChange}
               MenuProps={{ style: { height: "300px" } }}
@@ -76,7 +78,7 @@ const Preset = () => {
           </StyledFormControl>
         </StyledGrid>
         <StyledGrid item xs={4} display="flex" justifyContent={"center"} alignItems={"center"}>
-          {selectedDataset && !loading.get() && (
+          {props.selectedDataset && !loading.get() && (
             <>
               Shape {loadedData.length} rows and {Object.keys(loadedData[0]).length} columns
             </>
@@ -90,7 +92,7 @@ const Preset = () => {
           />
         </StyledGrid>
       </StyledGrid>
-      {selectedDataset && (
+      {props.selectedDataset && (
         <BorderedDataSetDiv mt="2">
           {loading.get() ? <Loader /> : <TableView loadedData={loadedData} />}
         </BorderedDataSetDiv>
@@ -99,4 +101,16 @@ const Preset = () => {
   );
 };
 
-export default Preset;
+const mapStateToProps = (state) => {
+  return {
+    selectedDataset: state?.preserReducer?.preset?.selectedDataset ? state.preserReducer.preset.selectedDataset : "",
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    SetSelectedDataset: (payload) => dispatch(SetSelectedDataset(payload)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Preset);

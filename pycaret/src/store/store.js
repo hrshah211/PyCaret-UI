@@ -1,6 +1,6 @@
-import MissingValuesReducer from "../reducer/setupReducer/missingValuesReducer";
 import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "../reducer/rootReducer";
 
-let Store = configureStore({ reducer: MissingValuesReducer });
+const Store = configureStore({ reducer: rootReducer });
 
 export default Store;

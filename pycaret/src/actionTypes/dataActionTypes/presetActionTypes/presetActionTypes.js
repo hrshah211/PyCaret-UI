@@ -1,0 +1,4 @@
+export const presetActionTypes = {
+  SET_SELECTED_DATASET: "SET_SELECTED_DATASET",
+  SET_DATA_COLUMNS: "SET_DATA_COLUMNS",
+};

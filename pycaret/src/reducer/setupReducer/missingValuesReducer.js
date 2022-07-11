@@ -1,6 +1,7 @@
+import initialState from "../../store/initialState";
 import { missingValuesActionTypes } from "../../actionTypes/setupActionTypes/missingValuesActionTypes";
 
-const MissingValuesReducer = (state = {}, action) => {
+const MissingValuesReducer = (state = initialState, action) => {
   switch (action.type) {
     case missingValuesActionTypes.SET_IMPUTATION_TYPE:
       return {
