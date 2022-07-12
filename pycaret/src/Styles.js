@@ -42,9 +42,6 @@ export const BorderedDataSetDiv = styled.div`
 
 export const StyledFormControl = styled(FormControl)`
   width: 100%;
-  @media only screen and (max-width: 100px) {
-    width: ${(props) => (props.w ? props.w : 0)}px;
-  }
 `;
 
 export const StyledAccordionSummary = styled(AccordionSummary)`

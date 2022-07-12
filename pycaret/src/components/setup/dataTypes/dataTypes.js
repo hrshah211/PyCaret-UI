@@ -4,6 +4,7 @@ import {
   SetDateFeatures,
   SetIgnoredFeatures,
   SetNumericFeatures,
+  SetSelectedFeatures,
 } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
 import { StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
 
@@ -13,18 +14,36 @@ import { connect } from "react-redux";
 const DataTypes = (props) => {
   const handleNumericFeaturesChange = (e) => {
     props.SetNumericFeatures(e.target.value);
+    props.SetSelectedFeatures();
   };
 
   const handleCategoricalFeaturesChange = (e) => {
     props.SetCategoricalFeatures(e.target.value);
+    props.SetSelectedFeatures();
   };
 
   const handleDateFeaturesChange = (e) => {
     props.SetDateFeatures(e.target.value);
+    props.SetSelectedFeatures();
   };
 
   const handleIgnoredFeaturesChange = (e) => {
     props.SetIgnoredFeatures(e.target.value);
+    props.SetSelectedFeatures();
+  };
+
+  const isSelected = (name, category) => {
+    switch (category) {
+      case "Numeric":
+        return !props.numericFeatures.includes(name) && props.selectedFeatures.includes(name) ? true : false;
+      case "Categorical":
+        return !props.categoricalFeatures.includes(name) && props.selectedFeatures.includes(name) ? true : false;
+      case "Date":
+        return !props.dateFeatures.includes(name) && props.selectedFeatures.includes(name) ? true : false;
+      case "Ignored":
+        return !props.ignoredFeatures.includes(name) && props.selectedFeatures.includes(name) ? true : false;
+      default:
+    }
   };
 
   return (
@@ -50,7 +69,7 @@ const DataTypes = (props) => {
               )}
             >
               {props.dataColumns.map((name) => (
-                <MenuItem key={name} value={name}>
+                <MenuItem key={name} value={name} disabled={isSelected(name, "Numeric")}>
                   {name}
                 </MenuItem>
               ))}
@@ -74,7 +93,7 @@ const DataTypes = (props) => {
               )}
             >
               {props.dataColumns.map((name) => (
-                <MenuItem key={name} value={name}>
+                <MenuItem key={name} value={name} disabled={isSelected(name, "Categorical")}>
                   {name}
                 </MenuItem>
               ))}
@@ -98,7 +117,7 @@ const DataTypes = (props) => {
               )}
             >
               {props.dataColumns.map((name) => (
-                <MenuItem key={name} value={name}>
+                <MenuItem key={name} value={name} disabled={isSelected(name, "Date")}>
                   {name}
                 </MenuItem>
               ))}
@@ -122,7 +141,7 @@ const DataTypes = (props) => {
               )}
             >
               {props.dataColumns.map((name) => (
-                <MenuItem key={name} value={name}>
+                <MenuItem key={name} value={name} disabled={isSelected(name, "Ignored")}>
                   {name}
                 </MenuItem>
               ))}
@@ -135,6 +154,7 @@ const DataTypes = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log('idhar aaya.', state.presetReducer.dataTypes)
   return {
     dataColumns: state?.presetReducer?.preset?.dataColumns ? state.presetReducer.preset.dataColumns : [],
     numericFeatures: state?.dataTypesReducer?.dataTypes?.numericFeatures
@@ -147,6 +167,9 @@ const mapStateToProps = (state) => {
     ignoredFeatures: state?.dataTypesReducer?.dataTypes?.ignoredFeatures
       ? state.dataTypesReducer.dataTypes.ignoredFeatures
       : [],
+    selectedFeatures: state?.dataTypesReducer?.dataTypes?.selectedFeatures
+      ? state.dataTypesReducer.dataTypes.selectedFeatures
+      : [],
   };
 };
 
@@ -156,6 +179,7 @@ const mapDispatchToProps = (dispatch) => {
     SetCategoricalFeatures: (payload) => dispatch(SetCategoricalFeatures(payload)),
     SetDateFeatures: (payload) => dispatch(SetDateFeatures(payload)),
     SetIgnoredFeatures: (payload) => dispatch(SetIgnoredFeatures(payload)),
+    SetSelectedFeatures: () => dispatch(SetSelectedFeatures()),
   };
 };
 

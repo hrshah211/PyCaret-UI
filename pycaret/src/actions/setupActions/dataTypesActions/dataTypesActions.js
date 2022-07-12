@@ -27,3 +27,15 @@ export const SetIgnoredFeatures = (payload) => {
     payload: payload,
   };
 };
+
+export const SetSelectedFeatures = () => {
+  return {
+    type: dataTypesActionTypes.SET_SELECTED_FEATURES,
+  };
+};
+
+export const ResetDataTypesData = () => {
+  return {
+    type: dataTypesActionTypes.RESET_DATATYPES_DATA,
+  };
+};

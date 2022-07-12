@@ -1,11 +1,16 @@
 import { BorderedDataSetDiv, StyledFormControl, StyledGrid } from "../../../Styles";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import React, { useEffect } from "react";
-import { SetDataFiles, SetLoadedData, SetSelectedDataset } from "../../../actions/dataActions/presetActions/presetActions";
+import {
+  SetDataFiles,
+  SetLoadedData,
+  SetSelectedDataset,
+} from "../../../actions/dataActions/presetActions/presetActions";
 
 import InputLabel from "@mui/material/InputLabel";
 import Loader from "../../loader/loader";
 import MenuItem from "@mui/material/MenuItem";
+import { ResetDataTypesData } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
 import Select from "@mui/material/Select";
 import TableView from "./tableview";
 import { connect } from "react-redux";
@@ -19,6 +24,7 @@ const Preset = (props) => {
     loading.set(true);
     getData(event.target.value, checkFullData.get());
     props.SetSelectedDataset(event.target.value);
+    props.ResetDataTypesData();
   };
 
   const handleFullDataChange = () => {
@@ -46,11 +52,11 @@ const Preset = (props) => {
   };
 
   useEffect(() => {
-    fetch("/datasets").then((res) =>
-      res.json().then((data) => {
-        props.SetDataFiles(data.files);
-      })
-    );
+      fetch("/datasets").then((res) =>
+        res.json().then((data) => {
+          props.SetDataFiles(data.files);
+        })
+      );
   }, []);
   return (
     <>
@@ -90,9 +96,7 @@ const Preset = (props) => {
         </StyledGrid>
       </StyledGrid>
       {props.selectedDataset && (
-        <BorderedDataSetDiv mt="2">
-          {loading.get() ? <Loader /> : <TableView/>}
-        </BorderedDataSetDiv>
+        <BorderedDataSetDiv mt="2">{loading.get() ? <Loader /> : <TableView />}</BorderedDataSetDiv>
       )}
     </>
   );
@@ -111,6 +115,7 @@ const mapDispatchToProps = (dispatch) => {
     SetSelectedDataset: (payload) => dispatch(SetSelectedDataset(payload)),
     SetDataFiles: (payload) => dispatch(SetDataFiles(payload)),
     SetLoadedData: (payload) => dispatch(SetLoadedData(payload)),
+    ResetDataTypesData: () => dispatch(ResetDataTypesData()),
   };
 };
 

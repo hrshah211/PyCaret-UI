@@ -8,7 +8,7 @@ const DataTypesReducer = (state = initialState, action) => {
         ...state,
         dataTypes: {
           ...state.dataTypes,
-          numericFeatures: action.payload,
+          numericFeatures: [...action.payload],
         },
       };
     case dataTypesActionTypes.SET_CATEGORICAL_FEATURES:
@@ -16,7 +16,7 @@ const DataTypesReducer = (state = initialState, action) => {
         ...state,
         dataTypes: {
           ...state.dataTypes,
-          categoricalFeatures: action.payload,
+          categoricalFeatures: [...action.payload],
         },
       };
     case dataTypesActionTypes.SET_DATE_FEATURES:
@@ -24,7 +24,7 @@ const DataTypesReducer = (state = initialState, action) => {
         ...state,
         dataTypes: {
           ...state.dataTypes,
-          dateFeatures: action.payload,
+          dateFeatures: [...action.payload],
         },
       };
     case dataTypesActionTypes.SET_IGNORED_FEATURES:
@@ -32,7 +32,33 @@ const DataTypesReducer = (state = initialState, action) => {
         ...state,
         dataTypes: {
           ...state.dataTypes,
-          ignoredFeatures: action.payload,
+          ignoredFeatures: [...action.payload],
+        },
+      };
+    case dataTypesActionTypes.SET_SELECTED_FEATURES:
+      const selectedFeatures = state.dataTypes.numericFeatures
+        .concat(state.dataTypes.categoricalFeatures, state.dataTypes.dateFeatures, state.dataTypes.ignoredFeatures)
+        .filter((element) => {
+          return element !== undefined;
+        });
+      return {
+        ...state,
+        dataTypes: {
+          ...state.dataTypes,
+          selectedFeatures: [...selectedFeatures],
+        },
+      };
+
+    case dataTypesActionTypes.RESET_DATATYPES_DATA:
+      return {
+        ...state,
+        dataTypes: {
+          ...state.dataTypes,
+          numericFeatures: [],
+          categoricalFeatures: [],
+          dateFeatures: [],
+          ignoredFeatures: [],
+          selectedFeatures: [],
         },
       };
     default:
