@@ -48,7 +48,6 @@ const Preset = (props) => {
         props.SetLoadedData(response);
         loading.set(false);
       })
-      .catch((error) => console.log("error", error));
   };
 
   useEffect(() => {

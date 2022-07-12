@@ -17,8 +17,8 @@ const setup = () => {
           </StyledTypography>
         </StyledAccordionSummary>
         <AccordionDetails>
-          <MissingValues />
           <DataTypes />
+          <MissingValues />
         </AccordionDetails>
       </StyledAccordion>
     </>

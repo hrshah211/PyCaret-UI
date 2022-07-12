@@ -27,6 +27,22 @@ const DataTypesReducer = (state = initialState, action) => {
           dateFeatures: [...action.payload],
         },
       };
+    case dataTypesActionTypes.SET_TEXT_FEATURES:
+      return {
+        ...state,
+        dataTypes: {
+          ...state.dataTypes,
+          textFeatures: [...action.payload],
+        },
+      };
+    case dataTypesActionTypes.SET_KEEP_FEATURES:
+      return {
+        ...state,
+        dataTypes: {
+          ...state.dataTypes,
+          keepFeatures: [...action.payload],
+        },
+      };
     case dataTypesActionTypes.SET_IGNORED_FEATURES:
       return {
         ...state,
@@ -37,7 +53,14 @@ const DataTypesReducer = (state = initialState, action) => {
       };
     case dataTypesActionTypes.SET_SELECTED_FEATURES:
       const selectedFeatures = state.dataTypes.numericFeatures
-        .concat(state.dataTypes.categoricalFeatures, state.dataTypes.dateFeatures, state.dataTypes.ignoredFeatures)
+        .concat(
+          state.dataTypes.categoricalFeatures,
+          state.dataTypes.dateFeatures,
+          state.dataTypes.textFeatures,
+          state.dataTypes.keepFeatures,
+          state.dataTypes.ignoredFeatures,
+          state.dataTypes.ordinalFeatures
+        )
         .filter((element) => {
           return element !== undefined;
         });
@@ -48,7 +71,6 @@ const DataTypesReducer = (state = initialState, action) => {
           selectedFeatures: [...selectedFeatures],
         },
       };
-
     case dataTypesActionTypes.RESET_DATATYPES_DATA:
       return {
         ...state,
@@ -57,8 +79,28 @@ const DataTypesReducer = (state = initialState, action) => {
           numericFeatures: [],
           categoricalFeatures: [],
           dateFeatures: [],
+          textFeatures: [],
+          keepFeatures: [],
           ignoredFeatures: [],
           selectedFeatures: [],
+          ordinalFeatures: [],
+        },
+      };
+    case dataTypesActionTypes.SET_ORDINAL_FEATURE:
+      return {
+        ...state,
+        dataTypes: {
+          ...state.dataTypes,
+          ordinalFeatures: [...action.payload],
+        },
+      };
+    case dataTypesActionTypes.SET_ORDINAL_FEATURES_ORDER:
+      console.log(action.payload)
+      return {
+        ...state,
+        dataTypes: {
+          ...state.dataTypes,
+          ordinalFeaturesOrder: { ...action.payload?.response },
         },
       };
     default:

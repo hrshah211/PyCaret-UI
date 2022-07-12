@@ -21,6 +21,20 @@ export const SetDateFeatures = (payload) => {
   };
 };
 
+export const SetTextFeatures = (payload) => {
+  return {
+    type: dataTypesActionTypes.SET_TEXT_FEATURES,
+    payload: payload,
+  };
+};
+
+export const SetKeepFeatures = (payload) => {
+  return {
+    type: dataTypesActionTypes.SET_KEEP_FEATURES,
+    payload: payload,
+  };
+};
+
 export const SetIgnoredFeatures = (payload) => {
   return {
     type: dataTypesActionTypes.SET_IGNORED_FEATURES,
@@ -37,5 +51,19 @@ export const SetSelectedFeatures = () => {
 export const ResetDataTypesData = () => {
   return {
     type: dataTypesActionTypes.RESET_DATATYPES_DATA,
+  };
+};
+
+export const SetOrdinalFeatures = (payload) => {
+  return {
+    type: dataTypesActionTypes.SET_ORDINAL_FEATURE,
+    payload: payload,
+  };
+};
+
+export const SetOrdinalFeaturesOrder = (payload) => {
+  return {
+    type: dataTypesActionTypes.SET_ORDINAL_FEATURES_ORDER,
+    payload: payload,
   };
 };
