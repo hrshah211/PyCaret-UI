@@ -1,4 +1,4 @@
-import { Box, Chip, InputLabel, MenuItem, Select } from "@mui/material";
+import { Box, Chip, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import {
   SetCategoricalFeatures,
   SetDateFeatures,
@@ -64,6 +64,10 @@ const DataTypes = (props) => {
     props.SetOrdinalFeatures(e.target.value);
     props.SetOrdinalFeaturesOrder(getOrdinalFeatureData(e.target.value));
     props.SetSelectedFeatures();
+  };
+
+  const handleOrdinalFeaturesOrderClick = (e) => {
+    console.log(e.target.value);
   };
 
   const isSelected = (name, category) => {
@@ -237,7 +241,7 @@ const DataTypes = (props) => {
           </StyledFormControl>
         </StyledGrid>
       </StyledGrid>
-      <StyledGrid container >
+      <StyledGrid container>
         <StyledGrid item xs={2} pr={1} pb={1}>
           <StyledFormControl>
             <InputLabel>Ordinal Features</InputLabel>
@@ -265,26 +269,14 @@ const DataTypes = (props) => {
         {Object.keys(props.ordinalFeaturesOrder).map((key) => (
           <StyledGrid item xs={2} pr={1} key={key} pb={1}>
             <StyledFormControl>
-              <InputLabel>{key}</InputLabel>
-              <Select
-                multiple
-                label="Ordinal Features"
-                value={props.ordinalFeatures}
-                onChange={handleOrdinalFeaturesChange}
-                renderValue={(selected) => (
-                  <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-              >
-                {Object.values(props.ordinalFeaturesOrder[key]).map((ind) => (
-                  <MenuItem key={ind} value={ind}>
-                    {ind}
-                  </MenuItem>
-                ))}
-              </Select>
+              <TextField
+                label={key}
+                value={props.ordinalFeaturesOrder[key]}
+                onClick={handleOrdinalFeaturesOrderClick}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
             </StyledFormControl>
           </StyledGrid>
         ))}

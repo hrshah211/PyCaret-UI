@@ -84,6 +84,7 @@ const DataTypesReducer = (state = initialState, action) => {
           ignoredFeatures: [],
           selectedFeatures: [],
           ordinalFeatures: [],
+          ordinalFeaturesOrder: {},
         },
       };
     case dataTypesActionTypes.SET_ORDINAL_FEATURE:
