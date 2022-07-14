@@ -96,12 +96,11 @@ const DataTypesReducer = (state = initialState, action) => {
         },
       };
     case dataTypesActionTypes.SET_ORDINAL_FEATURES_ORDER:
-      console.log(action.payload)
       return {
         ...state,
         dataTypes: {
           ...state.dataTypes,
-          ordinalFeaturesOrder: { ...action.payload?.response },
+          ordinalFeaturesOrder: { ...action.payload },
         },
       };
     default:

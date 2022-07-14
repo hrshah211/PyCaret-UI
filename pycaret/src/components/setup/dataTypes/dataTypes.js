@@ -1,4 +1,4 @@
-import { Box, Chip, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Box, Chip, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material";
 import {
   SetCategoricalFeatures,
   SetDateFeatures,
@@ -13,6 +13,7 @@ import {
 import { StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
 
 import React from "react";
+import SortableDragAndDrop from "./sortableDragAndDrop";
 import { connect } from "react-redux";
 
 const DataTypes = (props) => {
@@ -26,8 +27,20 @@ const DataTypes = (props) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        props.SetOrdinalFeaturesOrder({ columnName: columnName, response: response });
+        SetOrdinalFeaturesOrder(response.response, columnName);
       });
+  };
+
+  const SetOrdinalFeaturesOrder = (response, columnName) => {
+    let data = { ...props.ordinalFeaturesOrder };
+    data[columnName] = response;
+    props.SetOrdinalFeaturesOrder(data);
+  };
+
+  const deleteOrdinalFeatureData = (element) => {
+    let data = { ...props.ordinalFeaturesOrder };
+    delete data[element];
+    props.SetOrdinalFeaturesOrder(data);
   };
 
   const handleNumericFeaturesChange = (e) => {
@@ -61,13 +74,37 @@ const DataTypes = (props) => {
   };
 
   const handleOrdinalFeaturesChange = (e) => {
+    e.target.value
+      .filter((value) => !Object.keys(props.ordinalFeaturesOrder).includes(value))
+      .forEach((element) => {
+        getOrdinalFeatureData(element);
+      });
+    Object.keys(props.ordinalFeaturesOrder)
+      .filter((value) => !e.target.value.includes(value))
+      .forEach((element) => {
+        deleteOrdinalFeatureData(element);
+      });
     props.SetOrdinalFeatures(e.target.value);
-    props.SetOrdinalFeaturesOrder(getOrdinalFeatureData(e.target.value));
     props.SetSelectedFeatures();
   };
 
   const handleOrdinalFeaturesOrderClick = (e) => {
-    console.log(e.target.value);
+    setOpen(true);
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
   };
 
   const isSelected = (name, category) => {
@@ -277,6 +314,14 @@ const DataTypes = (props) => {
                   readOnly: true,
                 }}
               />
+              <Modal open={open} onClose={handleClose}>
+                <Box sx={style}>
+                  <StyledTypography variant="h6" component="div">
+                    {key}
+                  </StyledTypography>
+                  <SortableDragAndDrop key={key} param={key} />
+                </Box>
+              </Modal>
             </StyledFormControl>
           </StyledGrid>
         ))}

@@ -27,8 +27,7 @@ def loadOrdinalColumnData():
     ordinalFeaturesOrder = {}
     requestJSON = request.json
     data = get_data(requestJSON['dataset'])
-    for colName in requestJSON['columnName']:
-        ordinalFeaturesOrder[colName] = data[colName].unique().tolist()
+    ordinalFeaturesOrder['response'] = list(set(data[requestJSON['columnName']].tolist()))
     return ordinalFeaturesOrder
 
 
