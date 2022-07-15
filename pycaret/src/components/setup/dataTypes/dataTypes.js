@@ -1,4 +1,5 @@
 import { Box, Chip, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material";
+import React, { useState } from "react";
 import {
   SetCategoricalFeatures,
   SetDateFeatures,
@@ -10,9 +11,8 @@ import {
   SetSelectedFeatures,
   SetTextFeatures,
 } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
-import { StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
+import { StyledBox, StyledDiv, StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
 
-import React from "react";
 import SortableDragAndDrop from "./sortableDragAndDrop";
 import { connect } from "react-redux";
 
@@ -88,24 +88,14 @@ const DataTypes = (props) => {
     props.SetSelectedFeatures();
   };
 
-  const handleOrdinalFeaturesOrderClick = (e) => {
+  const handleOrdinalFeaturesOrderClick = (e, key) => {
+    setModalKey(key);
     setOpen(true);
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [modalKey, setModalKey] = useState("");
+  const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
-
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
 
   const isSelected = (name, category) => {
     switch (category) {
@@ -309,18 +299,20 @@ const DataTypes = (props) => {
               <TextField
                 label={key}
                 value={props.ordinalFeaturesOrder[key]}
-                onClick={handleOrdinalFeaturesOrderClick}
+                onClick={(event) => handleOrdinalFeaturesOrderClick(event, key)}
                 InputProps={{
                   readOnly: true,
                 }}
               />
               <Modal open={open} onClose={handleClose}>
-                <Box sx={style}>
-                  <StyledTypography variant="h6" component="div">
-                    {key}
-                  </StyledTypography>
-                  <SortableDragAndDrop key={key} param={key} />
-                </Box>
+                <StyledBox>
+                  <StyledDiv bgc={'#5CD8ED'} mt={5} mr={5} ml={5} mb={5} br={5}>
+                    <StyledTypography variant="h5" component="div" pt={1} pb={1}>
+                      {modalKey}
+                    </StyledTypography>
+                  </StyledDiv>
+                  <SortableDragAndDrop key={modalKey} param={modalKey} />
+                </StyledBox>
               </Modal>
             </StyledFormControl>
           </StyledGrid>

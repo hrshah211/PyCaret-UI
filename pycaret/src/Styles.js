@@ -1,6 +1,8 @@
 import { Accordion, AccordionSummary, Grid, Typography } from "@mui/material";
 
+import { Box } from "@mui/system";
 import FormControl from "@mui/material/FormControl";
+import SortableList from "react-easy-sort";
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
@@ -13,14 +15,18 @@ export const StyledDiv = styled.div`
   padding-right: ${(props) => (props.pr ? props.pr : 0)}px;
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)}px;
   padding-left: ${(props) => (props.pl ? props.pl : 0)}px;
+  background-color: ${(props) => (props.bgc ? props.bgc : "white")};
+  border-radius: ${(props) => (props.br ? props.br : 0)}px;
 `;
 
 export const StyledDivWidth = styled.div`
   width: ${(props) => (props.w ? props.w : 0)}px;
 `;
+
 export const StyledDivHeight = styled.div`
   heiight: ${(props) => (props.h ? props.h : 0)}px;
 `;
+
 export const StyledDivWidthHeight = styled.div`
   width: ${(props) => (props.w ? props.w : 0)}px;
   height: ${(props) => (props.h ? props.h : 0)}px;
@@ -82,4 +88,29 @@ export const StyledTypography = styled(Typography)`
   padding-right: ${(props) => (props.pr ? props.pr : 0)}px;
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)}px;
   padding-left: ${(props) => (props.pl ? props.pl : 0)}px;
+`;
+
+export const StyledBox = styled(Box)`
+  position: absolute;
+  min-width: 250px;
+  min-height: 250px;
+  max-height: 500px;
+  background-color: white;
+  border-top: 7px solid #56b9e8;
+  border-right: 3px solid #56b9e8;
+  border-bottom: 3px solid #56b9e8;
+  border-left: 3px solid #56b9e8;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+`;
+
+export const StyledSortableList = styled(SortableList)`
+  border: 1px solid;
+  border-radius: 5px;
+  padding-bottom: 3px;
+  overflow-y: scroll;
+  max-height: 300px;
 `;
