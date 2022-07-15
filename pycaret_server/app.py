@@ -1,13 +1,10 @@
 from flask import Flask, request
 import pandas as pd
 from pycaret.datasets import get_data
-from flask_cors import CORS
 
 index = pd.read_csv('https://raw.githubusercontent.com/pycaret/pycaret/master/datasets/index.csv')
 
 app = Flask(__name__)
-cors = CORS()
-cors.init_app(app)
 
 
 @app.route("/datasets")
