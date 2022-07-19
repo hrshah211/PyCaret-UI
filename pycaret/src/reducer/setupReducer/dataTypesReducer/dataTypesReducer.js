@@ -6,101 +6,131 @@ const DataTypesReducer = (state = initialState, action) => {
     case dataTypesActionTypes.SET_NUMERIC_FEATURES:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          numericFeatures: [...action.payload],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            numericFeatures: [...action.payload],
+          },
         },
       };
     case dataTypesActionTypes.SET_CATEGORICAL_FEATURES:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          categoricalFeatures: [...action.payload],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            categoricalFeatures: [...action.payload],
+          },
         },
       };
     case dataTypesActionTypes.SET_DATE_FEATURES:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          dateFeatures: [...action.payload],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            dateFeatures: [...action.payload],
+          },
         },
       };
     case dataTypesActionTypes.SET_TEXT_FEATURES:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          textFeatures: [...action.payload],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            textFeatures: [...action.payload],
+          },
         },
       };
     case dataTypesActionTypes.SET_KEEP_FEATURES:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          keepFeatures: [...action.payload],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            keepFeatures: [...action.payload],
+          },
         },
       };
     case dataTypesActionTypes.SET_IGNORED_FEATURES:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          ignoredFeatures: [...action.payload],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            ignoredFeatures: [...action.payload],
+          },
         },
       };
     case dataTypesActionTypes.SET_SELECTED_FEATURES:
-      const selectedFeatures = state.dataTypes.numericFeatures
+      const selectedFeatures = state.setup.dataTypes.numericFeatures
         .concat(
-          state.dataTypes.categoricalFeatures,
-          state.dataTypes.dateFeatures,
-          state.dataTypes.textFeatures,
-          state.dataTypes.keepFeatures,
-          state.dataTypes.ignoredFeatures,
-          state.dataTypes.ordinalFeatures
+          state.setup.dataTypes.categoricalFeatures,
+          state.setup.dataTypes.dateFeatures,
+          state.setup.dataTypes.textFeatures,
+          state.setup.dataTypes.keepFeatures,
+          state.setup.dataTypes.ignoredFeatures,
+          state.setup.dataTypes.ordinalFeatures
         )
         .filter((element) => {
           return element !== undefined;
         });
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          selectedFeatures: [...selectedFeatures],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            selectedFeatures: [...selectedFeatures],
+          },
         },
       };
     case dataTypesActionTypes.RESET_DATATYPES_DATA:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          numericFeatures: [],
-          categoricalFeatures: [],
-          dateFeatures: [],
-          textFeatures: [],
-          keepFeatures: [],
-          ignoredFeatures: [],
-          selectedFeatures: [],
-          ordinalFeatures: [],
-          ordinalFeaturesOrder: {},
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            numericFeatures: [],
+            categoricalFeatures: [],
+            dateFeatures: [],
+            textFeatures: [],
+            keepFeatures: [],
+            ignoredFeatures: [],
+            selectedFeatures: [],
+            ordinalFeatures: [],
+            ordinalFeaturesOrder: {},
+          },
         },
       };
     case dataTypesActionTypes.SET_ORDINAL_FEATURE:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          ordinalFeatures: [...action.payload],
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            ordinalFeatures: [...action.payload],
+          },
         },
       };
     case dataTypesActionTypes.SET_ORDINAL_FEATURES_ORDER:
       return {
         ...state,
-        dataTypes: {
-          ...state.dataTypes,
-          ordinalFeaturesOrder: { ...action.payload },
+        setup: {
+          ...state.setup,
+          dataTypes: {
+            ...state.setup.dataTypes,
+            ordinalFeaturesOrder: { ...action.payload },
+          },
         },
       };
     default:

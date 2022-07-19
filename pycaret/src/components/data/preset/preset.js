@@ -103,9 +103,9 @@ const Preset = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    selectedDataset: state?.presetReducer?.preset?.selectedDataset ? state.presetReducer.preset.selectedDataset : "",
-    dataFiles: state?.presetReducer?.preset?.dataFiles ? state.presetReducer.preset.dataFiles : [],
-    loadedData: state?.presetReducer?.preset?.loadedData ? state.presetReducer.preset.loadedData : {},
+    selectedDataset: state?.presetReducer?.data?.preset?.selectedDataset ? state.presetReducer.data.preset.selectedDataset : "",
+    dataFiles: state?.presetReducer?.data?.preset?.dataFiles ? state.presetReducer.data.preset.dataFiles : [],
+    loadedData: state?.presetReducer?.data?.preset?.loadedData ? state.presetReducer.data.preset.loadedData : {},
   };
 };
 

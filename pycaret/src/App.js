@@ -11,7 +11,7 @@ function App() {
     <Provider store={Store}>
       <div className="App">
         <Navbar />
-        <StyledDiv pl="15" pr="15" pt="15">
+        <StyledDiv pl="15" pr="15" pt="15" bgc="#e4f5fe">
           <Data />
           <Visualization />
           <Setup />

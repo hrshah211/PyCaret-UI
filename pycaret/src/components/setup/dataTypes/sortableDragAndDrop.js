@@ -27,8 +27,8 @@ const SortableDragAndDrop = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    ordinalFeaturesOrder: state?.dataTypesReducer?.dataTypes?.ordinalFeaturesOrder
-      ? state.dataTypesReducer.dataTypes.ordinalFeaturesOrder
+    ordinalFeaturesOrder: state?.dataTypesReducer?.setup?.dataTypes?.ordinalFeaturesOrder
+      ? state.dataTypesReducer.setup.dataTypes.ordinalFeaturesOrder
       : {},
   };
 };

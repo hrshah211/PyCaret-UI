@@ -6,26 +6,35 @@ const PresetReducer = (state = initialState, action) => {
     case presetActionTypes.SET_SELECTED_DATASET:
       return {
         ...state,
-        preset: {
-          ...state.preset,
-          selectedDataset: action.payload,
+        data: {
+          ...state.data,
+          preset: {
+            ...state.data.preset,
+            selectedDataset: action.payload,
+          },
         },
       };
     case presetActionTypes.SET_DATA_FILES:
       return {
         ...state,
-        preset: {
-          ...state.preset,
-          dataFiles: action.payload,
+        data: {
+          ...state.data,
+          preset: {
+            ...state.data.preset,
+            dataFiles: action.payload,
+          },
         },
       };
     case presetActionTypes.SET_DATA:
       return {
         ...state,
-        preset: {
-          ...state.preset,
-          loadedData: action.payload,
-          dataColumns: Object.keys(action.payload[0]),
+        data: {
+          ...state.data,
+          preset: {
+            ...state.data.preset,
+            loadedData: action.payload,
+            dataColumns: Object.keys(action.payload[0]),
+          },
         },
       };
     default:

@@ -39,8 +39,8 @@ const TableView = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loadedData: state?.presetReducer?.preset?.loadedData ? state.presetReducer.preset.loadedData : {},
-    dataColumns: state?.presetReducer?.preset?.dataColumns ? state.presetReducer.preset.dataColumns : [],
+    loadedData: state?.presetReducer?.data?.preset?.loadedData ? state.presetReducer.data.preset.loadedData : {},
+    dataColumns: state?.presetReducer?.data?.preset?.dataColumns ? state.presetReducer.data.preset.dataColumns : [],
   };
 };
 
