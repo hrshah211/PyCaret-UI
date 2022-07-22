@@ -3,6 +3,7 @@ import initialState from "../../store/initialState";
 import { visualizationActionTypes } from "../../actionTypes/visualizationActionTypes/visualizationActionTypes";
 
 const VisualizationReducer = (state = initialState, action) => {
+  let charts = []
   switch (action.type) {
     case visualizationActionTypes.SET_CHART_TYPES:
       return {
@@ -13,7 +14,7 @@ const VisualizationReducer = (state = initialState, action) => {
         },
       };
     case visualizationActionTypes.ADD_CHART:
-      let charts = [];
+      charts = [];
       if (!state.visualization.charts) {
         charts = [defaultChart];
       } else {
@@ -27,17 +28,26 @@ const VisualizationReducer = (state = initialState, action) => {
         },
       };
     case visualizationActionTypes.DELETE_CHART:
-      const currentCharts = [...state.visualization.charts];
-      const chartsAfterDelete = currentCharts.filter((chart) => chart.chartId !== action.payload);
+      charts = [...state.visualization.charts];
+      const chartsAfterDelete = charts.filter((chart) => chart.chartId !== action.payload);
       for (let i = 0; i < chartsAfterDelete.length; i++) {
         chartsAfterDelete[i] = { ...chartsAfterDelete[i], chartId: i + 1 };
       }
-      console.log(currentCharts, "---", chartsAfterDelete);
       return {
         ...state,
         visualization: {
           ...state.visualization,
           charts: [...chartsAfterDelete],
+        },
+      };
+    case visualizationActionTypes.SET_CHART_DETAILS:
+      charts = [...state.visualization.charts];
+      charts[charts.findIndex((chart) => chart.chartId === action.payload.chartId)] = action.payload;
+      return {
+        ...state,
+        visualization: {
+          ...state.visualization,
+          charts: [...charts],
         },
       };
     default:

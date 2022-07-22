@@ -93,9 +93,9 @@ export const StyledTypography = styled(Typography)`
 
 export const StyledBox = styled(Box)`
   position: absolute;
-  min-width: 250px;
-  min-height: 250px;
-  max-height: 500px;
+  min-width: ${(props) => (props.mnw ? props.mnw : 250)}px;
+  min-height: ${(props) => (props.mnh ? props.mnh : 250)}px;
+  max-height: ${(props) => (props.mxh ? props.mxh : 500)}px;
   background-color: white;
   border-top: 7px solid #56b9e8;
   border-right: 3px solid #56b9e8;

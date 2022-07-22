@@ -1,12 +1,20 @@
-import { AddChart, DeleteChart, SetChartTypes } from "../../actions/visualizationActions/visualizationActions";
-import { Button, Select } from "@mui/material";
+import {
+  AddChart,
+  DeleteChart,
+  SetChartDetails,
+  SetChartTypes,
+} from "../../actions/visualizationActions/visualizationActions";
+import { Button, Modal, Select, TextField } from "@mui/material";
+import React, { useState } from "react";
 import {
   StyledAccordion,
   StyledAccordionSummary,
+  StyledBox,
+  StyledDiv,
   StyledFontAwesomeIcon,
   StyledFormControl,
   StyledGrid,
-  StyledTypography
+  StyledTypography,
 } from "../../Styles";
 import { faCirclePlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,10 +24,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import InputLabel from "@mui/material/InputLabel";
-import React from "react";
 import { connect } from "react-redux";
 
 const Visualization = (props) => {
+  const [modalChart, setModalChart] = useState({});
+
   const getChartTypes = () => {
     fetch("/getChartTypes").then((res) =>
       res.json().then((data) => {
@@ -33,6 +42,27 @@ const Visualization = (props) => {
       getChartTypes();
     }
     props.AddChart();
+  };
+
+  const handleChartNameChange = (e) => {
+    setModalChart({ ...modalChart, chartName: e.target.value });
+  };
+
+  const handleChartTypeChange = (e) => {
+    setModalChart({ ...modalChart, chartType: e.target.value });
+  };
+
+  const handleOpenChartClick = (event, chartId) => {
+    const chart = props.charts.filter((chart) => chart.chartId === chartId)[0];
+    setModalChart(chart);
+    setOpen(true);
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    props.SetChartDetails(modalChart);
+    setOpen(false);
   };
 
   const handleDeleteChart = (event, chartId) => {
@@ -55,42 +85,69 @@ const Visualization = (props) => {
             </Button>
             <StyledGrid container pb={1}>
               {props.charts.map((chart) => (
-                <StyledGrid item xs={2} pr={1} pb={3}>
-                  <Card key={chart}>
-                    {/* <CardMedia
+                <StyledGrid item xs={2} pr={1} pb={3} key={chart.chartId}>
+                  <Card>
+                    <StyledDiv onClick={(event) => handleOpenChartClick(event, chart.chartId)}>
+                      {/* <CardMedia
                   component="img"
                   height="140"
                   image="/static/images/cards/contemplative-reptile.jpg"
                   alt="green iguana"
                 /> */}
-                    <CardContent>
-                      <StyledTypography variant="h5" component="div">
-                        {chart.chartName} - {chart.chartId}
-                      </StyledTypography>
-                    </CardContent>
+                      <CardContent>
+                        <StyledTypography variant="h5" component="div">
+                          {chart.chartName}
+                        </StyledTypography>
+                      </CardContent>
+                    </StyledDiv>
                     <CardActions>
                       <Button size="small" onClick={(event) => handleDeleteChart(event, chart.chartId)}>
                         <StyledFontAwesomeIcon icon={faTrash} pr={5} />
                       </Button>
                     </CardActions>
                   </Card>
+                  <Modal open={open} onClose={handleClose}>
+                    <StyledBox mnw={700} mnh={700} mxh={1000}>
+                      <StyledGrid container pt={1} pl={1}>
+                        <StyledGrid item xs={6} pr={1}>
+                          <StyledFormControl>
+                            <TextField
+                              label="Chart Name"
+                              type="text"
+                              value={modalChart.chartName}
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
+                              onChange={handleChartNameChange}
+                            />
+                          </StyledFormControl>
+                        </StyledGrid>
+                        <StyledGrid item xs={6} pr={1}>
+                          <StyledFormControl>
+                            <InputLabel>Chart Type</InputLabel>
+                            <Select
+                              native
+                              label="Chart Type"
+                              onChange={handleChartTypeChange}
+                              value={modalChart.chartType}
+                            >
+                              {Object.keys(props.chartTypes).map((key) => (
+                                <optgroup key={key} label={key}>
+                                  {props.chartTypes[key].map((chartType) => (
+                                    <option key={chartType}>{chartType}</option>
+                                  ))}
+                                </optgroup>
+                              ))}
+                            </Select>
+                          </StyledFormControl>
+                        </StyledGrid>
+                      </StyledGrid>
+                    </StyledBox>
+                  </Modal>
                 </StyledGrid>
               ))}
             </StyledGrid>
-            <StyledFormControl>
-              <InputLabel>Chart Type</InputLabel>
-              <Select native label="Chart Type">
-                {Object.keys(props.chartTypes).map((key) => (
-                  <optgroup key={key} label={key}>
-                    {props.chartTypes[key].map((chartType) => (
-                      <option key={chartType}>{chartType}</option>
-                    ))}
-                  </optgroup>
-                ))}
-              </Select>
-            </StyledFormControl>
           </div>
-          {/* <ChartSelect></ChartSelect> */}
         </AccordionDetails>
       </StyledAccordion>
     </>
@@ -111,6 +168,7 @@ const mapDispatchToProps = (dispatch) => {
     SetChartTypes: (payload) => dispatch(SetChartTypes(payload)),
     AddChart: () => dispatch(AddChart()),
     DeleteChart: (payload) => dispatch(DeleteChart(payload)),
+    SetChartDetails: (payload) => dispatch(SetChartDetails(payload)),
   };
 };
 

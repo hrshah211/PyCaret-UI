@@ -19,3 +19,10 @@ export const DeleteChart = (payload) => {
     payload: payload,
   };
 };
+
+export const SetChartDetails = (payload) => {
+  return {
+    type: visualizationActionTypes.SET_CHART_DETAILS,
+    payload: payload,
+  };
+};

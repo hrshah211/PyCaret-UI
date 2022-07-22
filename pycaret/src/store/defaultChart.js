@@ -1,6 +1,7 @@
 const defaultChart = {
-  chartName: "Chart",
+  chartName: "",
   chartId: 1,
+  chartType: ''
 };
 
 export default defaultChart;
