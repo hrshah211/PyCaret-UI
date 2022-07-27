@@ -7,6 +7,13 @@ export const SetSelectedDataset = (payload) => {
   };
 };
 
+export const SetCheckFullData = (payload) => {
+  return {
+    type: presetActionTypes.SET_CHECK_FULL_DATA,
+    payload: payload,
+  };
+};
+
 export const SetDataFiles = (payload) => {
   return {
     type: presetActionTypes.SET_DATA_FILES,

@@ -1,5 +1,5 @@
 const defaultChart = {
-  chartName: "",
+  chartName: "Chart",
   chartId: 1,
   chartType: ''
 };

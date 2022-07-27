@@ -1,6 +1,8 @@
 const initialState = {
   data: {
-    preset: {},
+    preset: {
+      checkFullData: false,
+    },
   },
   visualization: {},
   setup: {

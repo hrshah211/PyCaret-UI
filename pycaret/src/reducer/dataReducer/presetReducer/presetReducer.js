@@ -14,6 +14,17 @@ const PresetReducer = (state = initialState, action) => {
           },
         },
       };
+    case presetActionTypes.SET_CHECK_FULL_DATA:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          preset: {
+            ...state.data.preset,
+            checkFullData: action.payload,
+          },
+        },
+      };
     case presetActionTypes.SET_DATA_FILES:
       return {
         ...state,

@@ -13,12 +13,13 @@ import {
 } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
 import { StyledBox, StyledDiv, StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
 
+import { API_URL } from "../../../store/apiURL";
 import SortableDragAndDrop from "./sortableDragAndDrop";
 import { connect } from "react-redux";
 
 const DataTypes = (props) => {
   const getOrdinalFeatureData = (columnName) => {
-    fetch("/loadOrdinalColumnData", {
+    fetch(API_URL.LOAD_ORDINAL_COLUMN_DATA, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import { Accordion, AccordionSummary, Grid, Typography } from "@mui/material";
 
 import { Box } from "@mui/system";
+import CardContent from "@mui/material/CardContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FormControl from "@mui/material/FormControl";
 import SortableList from "react-easy-sort";
@@ -126,4 +127,8 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   padding-right: ${(props) => (props.pr ? props.pr : 0)}px;
   padding-bottom: ${(props) => (props.pb ? props.pb : 0)}px;
   padding-left: ${(props) => (props.pl ? props.pl : 0)}px;
+`;
+
+export const StyledCardContent = styled(CardContent)`
+  background-color: #e3e4f0;
 `;
