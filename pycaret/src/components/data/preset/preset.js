@@ -52,7 +52,7 @@ const Preset = (props) => {
   };
 
   useEffect(() => {
-    fetch(API_URL.DATASETS).then((res) =>
+    fetch("https://py-caret-api.herokuapp.com/datasets").then((res) =>
       res.json().then((data) => {
         props.SetDataFiles(data.files);
       })
