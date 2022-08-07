@@ -55,17 +55,17 @@ export const StyledFormControl = styled(FormControl)`
 export const StyledAccordionSummary = styled(AccordionSummary)`
   height: 80px;
   background-color: #c0e9ff !important;
-  border-top-right-radius: 10px !important;
-  border-bottom-right-radius: 10px !important;
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
 `;
 
 export const StyledAccordion = styled(Accordion)`
   margin-bottom: 10px;
-  border-left: 7px solid #083d77;
-  border-right: 1px solid #083d77;
-  border-top: 1px solid #083d77;
-  border-bottom: 1px solid #083d77;
-  border-radius: 10px !important;
+  border-left: 7px solid #05386b;
+  border-right: 1px solid #05386b;
+  border-top: 1px solid #05386b;
+  border-bottom: 1px solid #05386b;
+  border-radius: 5px !important;
 `;
 
 export const StyledGrid = styled(Grid)`
@@ -102,7 +102,7 @@ export const StyledBox = styled(Box)`
   border-right: 3px solid #56b9e8;
   border-bottom: 3px solid #56b9e8;
   border-left: 3px solid #56b9e8;
-  border-radius: 10px;
+  border-radius: 5px;
   top: 50%;
   left: 50%;
   text-align: center;
