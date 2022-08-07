@@ -1,3 +1,4 @@
+import { API_URL, getURL } from "../../../store/apiURL";
 import { BorderedDataSetDiv, StyledFormControl, StyledGrid } from "../../../Styles";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import React, { useEffect } from "react";
@@ -8,7 +9,6 @@ import {
   SetSelectedDataset,
 } from "../../../actions/dataActions/presetActions/presetActions";
 
-import { API_URL } from "../../../store/apiURL";
 import InputLabel from "@mui/material/InputLabel";
 import Loader from "../../loader/loader";
 import MenuItem from "@mui/material/MenuItem";
@@ -37,7 +37,7 @@ const Preset = (props) => {
   };
 
   const getData = (dataSet, fullData) => {
-    fetch(API_URL.LOAD_DATA, {
+    fetch(getURL(API_URL.LOAD_DATA), {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Preset = (props) => {
   };
 
   useEffect(() => {
-    fetch("https://py-caret-api.herokuapp.com/datasets").then((res) =>
+    fetch(getURL(API_URL.DATASETS)).then((res) =>
       res.json().then((data) => {
         props.SetDataFiles(data.files);
       })

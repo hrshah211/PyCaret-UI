@@ -1,3 +1,4 @@
+import { API_URL, getURL } from "../../store/apiURL";
 import {
   AddChart,
   DeleteChart,
@@ -19,7 +20,6 @@ import {
 } from "../../Styles";
 import { faCirclePlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { API_URL } from "../../store/apiURL";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Alert from "@mui/material/Alert";
 import Card from "@mui/material/Card";
@@ -36,7 +36,7 @@ const Visualization = (props) => {
   const loading = useSynchronousState(false);
 
   const getChartTypes = () => {
-    fetch(API_URL.GET_CHART_TYPES).then((res) =>
+    fetch(getURL(API_URL.GET_CHART_TYPES)).then((res) =>
       res.json().then((data) => {
         props.SetChartTypes(data);
         loading.set(false);
