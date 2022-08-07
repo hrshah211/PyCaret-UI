@@ -3,7 +3,7 @@ import pandas as pd
 from pycaret.datasets import get_data
 import requests
 from bs4 import BeautifulSoup 
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 
 index = pd.read_csv('https://raw.githubusercontent.com/pycaret/pycaret/master/datasets/index.csv')
@@ -22,13 +22,11 @@ CORS(app)
 
 
 @app.route("/datasets")
-@cross_origin()
 def datasets():
     return {"files": index['Dataset'].tolist()}
 
 
 @app.route("/loadData", methods=["POST"])
-@cross_origin()
 def loadData():
     requestJSON = request.json
     data = get_data(requestJSON['data'])
@@ -39,7 +37,6 @@ def loadData():
 
 
 @app.route("/loadOrdinalColumnData", methods=["POST"])
-@cross_origin()
 def loadOrdinalColumnData():
     ordinalFeaturesOrder = {}
     requestJSON = request.json
@@ -49,7 +46,6 @@ def loadOrdinalColumnData():
 
 
 @app.route("/getChartTypes")
-@cross_origin()
 def getChartTypes():
     chart_urls = {'Basic': 'https://plotly.com/javascript/basic-charts/',
                   'Statistical': 'https://plotly.com/javascript/statistical-charts/',
