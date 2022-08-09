@@ -102,7 +102,7 @@ const MissingValues = (props) => {
 
   return (
     <>
-      <StyledTypography variant="h6" component="div" style={{ fontWeight: 600 }} pb={1}>
+      <StyledTypography variant="h6" component="div" pb={1}>
         Missing Values
       </StyledTypography>
       <StyledGrid container pb={1}>

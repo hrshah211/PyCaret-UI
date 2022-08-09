@@ -81,7 +81,7 @@ const Visualization = (props) => {
     <>
       <StyledAccordion>
         <StyledAccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <StyledTypography variant="h5" component="div" style={{ fontWeight: 550 }}>
+          <StyledTypography variant="h5" component="div">
             Visualization
           </StyledTypography>
         </StyledAccordionSummary>
