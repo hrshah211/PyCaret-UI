@@ -93,13 +93,13 @@ const Visualization = (props) => {
               )}
             </div>
             <div style={{ textAlign: "end", width: "20%" }}>
-              <Button variant="outlined" onClick={handleAddChartClick}>
+              <Button variant="outlined" size="large" onClick={handleAddChartClick}>
                 <StyledFontAwesomeIcon icon={faCirclePlus} pr={5} />
-                Add Chart
+                <StyledTypography>Add Chart</StyledTypography>
               </Button>
             </div>
           </div>
-          <StyledGrid container pb={1}>
+          <StyledGrid container pt={2}>
             {loading.get() ? (
               <>
                 <Loader />

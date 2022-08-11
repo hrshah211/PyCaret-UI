@@ -120,7 +120,7 @@ const DataTypes = (props) => {
 
   return (
     <>
-      <StyledTypography variant="h6" component="div" pb={1}>
+      <StyledTypography variant="h6" component="div" pb={1} pt={1} style={{fontWeight: 700}}>
         Data Types
       </StyledTypography>
       <StyledGrid container pb={1}>

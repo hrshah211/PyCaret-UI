@@ -14,7 +14,7 @@ const theme = createTheme({
     fontWeightRegular: 600,
   },
   palette: {
-    primary: { main: '#346391' },
+    primary: { main: "#346391" },
   },
 });
 
@@ -24,7 +24,7 @@ function App() {
       <Provider store={Store}>
         <div className="App">
           <Navbar />
-          <StyledDiv pl="15" pr="15" pt="15" bgc="#ffffff">
+          <StyledDiv pl={15} pr={15} pt={15} pb={15} bgc="#ffffff">
             <Data />
             <Visualization />
             <Setup />

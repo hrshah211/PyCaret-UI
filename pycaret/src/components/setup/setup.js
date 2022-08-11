@@ -2,6 +2,7 @@ import { StyledAccordion, StyledAccordionSummary, StyledTypography } from "../..
 
 import AccordionDetails from "@mui/material/AccordionDetails";
 import DataTypes from "./dataTypes/dataTypes";
+import Divider from "@mui/material/Divider";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MissingValues from "./missingValues/missingValues";
 import React from "react";
@@ -18,6 +19,7 @@ const setup = () => {
         </StyledAccordionSummary>
         <AccordionDetails>
           <DataTypes />
+          <Divider />
           <MissingValues />
         </AccordionDetails>
       </StyledAccordion>
