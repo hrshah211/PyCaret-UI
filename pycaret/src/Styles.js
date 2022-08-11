@@ -54,11 +54,10 @@ export const StyledFormControl = styled(FormControl)`
 
 export const StyledAccordionSummary = styled(AccordionSummary)`
   height: 80px;
-  background-color: #f1f0da !important;
+  background-color: #eaeaea !important;
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
 `; 
-// FFFDD0 f5f5f5
 
 export const StyledAccordion = styled(Accordion)`
   margin-bottom: 10px;

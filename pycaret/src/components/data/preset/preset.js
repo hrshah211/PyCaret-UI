@@ -19,10 +19,11 @@ import { connect } from "react-redux";
 import useSynchronousState from "../../../customHooks/useSynchronousState";
 
 const Preset = (props) => {
-  const loading = useSynchronousState(false);
+  const loadingDatasets = useSynchronousState(false);
+  const loadingData = useSynchronousState(false);
 
   const handleDataSetChange = (event) => {
-    loading.set(true);
+    loadingData.set(true);
     props.SetSelectedDataset(event.target.value);
     getData(event.target.value, props.checkFullData);
     props.ResetDataTypesData();
@@ -31,7 +32,7 @@ const Preset = (props) => {
   const handleFullDataChange = (event) => {
     props.SetCheckFullData(event.target.checked);
     if (props.selectedDataset) {
-      loading.set(true);
+      loadingData.set(true);
       getData(props.selectedDataset, event.target.checked);
     }
   };
@@ -47,56 +48,69 @@ const Preset = (props) => {
       .then((response) => response.json())
       .then((response) => {
         props.SetLoadedData(response);
-        loading.set(false);
+        loadingData.set(false);
       });
   };
 
   useEffect(() => {
+    loadingDatasets.set(true);
     fetch(getURL(API_URL.DATASETS)).then((res) =>
       res.json().then((data) => {
         props.SetDataFiles(data.files);
+        loadingDatasets.set(false);
       })
     );
   }, []);
   return (
     <>
       <StyledGrid container>
-        <StyledGrid item xs={4}>
-          <StyledFormControl w="500">
-            <InputLabel>Datasets</InputLabel>
-            <Select
-              value={props.selectedDataset}
-              label="Datasets"
-              onChange={handleDataSetChange}
-              MenuProps={{ style: { height: "300px" } }}
-            >
-              {props.dataFiles.map((data) => {
-                return (
-                  <MenuItem value={data} key={data}>
-                    {data}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </StyledFormControl>
-        </StyledGrid>
-        <StyledGrid item xs={4} display="flex" justifyContent={"center"} alignItems={"center"}>
-          {props.selectedDataset && !loading.get() && (
-            <StyledTypography>
-              Shape {props.loadedData.length} rows and {Object.keys(props.loadedData[0]).length} columns
+        {loadingDatasets.get() ? (
+          <>
+            <Loader />
+            <StyledTypography pl={5} pt={1} variant="h6" component="div">
+              Loading Datasets...
             </StyledTypography>
-          )}
-        </StyledGrid>
+          </>
+        ) : (
+          <>
+            <StyledGrid item xs={4}>
+              <StyledFormControl w="500">
+                <InputLabel>Datasets</InputLabel>
+                <Select
+                  value={props.selectedDataset}
+                  label="Datasets"
+                  onChange={handleDataSetChange}
+                  MenuProps={{ style: { height: "300px" } }}
+                >
+                  {props.dataFiles.map((data) => {
+                    return (
+                      <MenuItem value={data} key={data}>
+                        {data}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </StyledFormControl>
+            </StyledGrid>
+            <StyledGrid item xs={4} display="flex" justifyContent={"center"} alignItems={"center"}>
+              {props.selectedDataset && !loadingData.get() && (
+                <StyledTypography>
+                  Shape {props.loadedData.length} rows and {Object.keys(props.loadedData[0]).length} columns
+                </StyledTypography>
+              )}
+            </StyledGrid>
 
-        <StyledGrid item xs={4} display="flex" justifyContent="flex-end">
-          <FormControlLabel
-            control={<Checkbox value={props.checkFullData} onChange={handleFullDataChange} />}
-            label="Load Full Data"
-          />
-        </StyledGrid>
+            <StyledGrid item xs={4} display="flex" justifyContent="flex-end">
+              <FormControlLabel
+                control={<Checkbox value={props.checkFullData} onChange={handleFullDataChange} />}
+                label="Load Full Data"
+              />
+            </StyledGrid>
+          </>
+        )}
       </StyledGrid>
       {props.selectedDataset && (
-        <BorderedDataSetDiv mt="2">{loading.get() ? <Loader /> : <TableView />}</BorderedDataSetDiv>
+        <BorderedDataSetDiv mt="2">{loadingData.get() ? <Loader /> : <TableView />}</BorderedDataSetDiv>
       )}
     </>
   );

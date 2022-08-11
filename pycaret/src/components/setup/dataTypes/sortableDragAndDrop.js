@@ -1,4 +1,4 @@
-import { StyledDiv, StyledSortableList } from "../../../Styles";
+import { StyledDiv, StyledSortableList, StyledTypography } from "../../../Styles";
 
 import React from "react";
 import { SetOrdinalFeaturesOrder } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
@@ -17,7 +17,9 @@ const SortableDragAndDrop = (props) => {
       <StyledSortableList onSortEnd={onSortEnd}>
         {props.ordinalFeaturesOrder[props.param].map((item) => (
           <SortableItem key={item}>
-            <StyledDiv br={5} bgc={'#EADDCA'} ml={10} mr={10} mt={3} pt={3} pb={3}>{item}</StyledDiv>
+            <StyledDiv br={5} bgc={"#EADDCA"} ml={10} mr={10} mt={3} pt={3} pb={3}>
+              <StyledTypography>{item}</StyledTypography>
+            </StyledDiv>
           </SortableItem>
         ))}
       </StyledSortableList>
