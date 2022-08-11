@@ -1,5 +1,5 @@
 import { API_URL, getURL } from "../../../store/apiURL";
-import { BorderedDataSetDiv, StyledFormControl, StyledGrid } from "../../../Styles";
+import { BorderedDataSetDiv, StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import React, { useEffect } from "react";
 import {
@@ -82,9 +82,9 @@ const Preset = (props) => {
         </StyledGrid>
         <StyledGrid item xs={4} display="flex" justifyContent={"center"} alignItems={"center"}>
           {props.selectedDataset && !loading.get() && (
-            <>
+            <StyledTypography>
               Shape {props.loadedData.length} rows and {Object.keys(props.loadedData[0]).length} columns
-            </>
+            </StyledTypography>
           )}
         </StyledGrid>
 

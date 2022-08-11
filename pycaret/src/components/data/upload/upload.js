@@ -1,7 +1,8 @@
 import React from "react";
+import WorkInProgress from "../../workInProgress";
 
 const Upload = () => {
-  return <div>Upload</div>;
+  return <WorkInProgress />;
 };
 
 export default Upload;

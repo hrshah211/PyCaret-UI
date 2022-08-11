@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { StyledFormControl, StyledGrid } from "../../../Styles";
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Link from "../link/link";
 import Preset from "../preset/preset";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import { StyledFormControl } from "../../../Styles";
 import Upload from "../upload/upload";
 
 function Options() {
@@ -34,21 +34,44 @@ function Options() {
   return (
     <>
       <div>
-        <StyledFormControl w="500">
-          <RadioGroup row name="row-radio-buttons-group">
-            <FormControlLabel value="Preset Data" control={<Radio onClick={handlePresetClick} />} label="Preset Data" />
+        <StyledFormControl w="800">
+          <RadioGroup row>
+            <FormControlLabel
+              value="Preset Data"
+              control={<Radio onClick={handlePresetClick} />}
+              label="Preset Data"
+              style={{ paddingRight: "30px" }}
+            />
             <FormControlLabel
               value="Provide the Link"
               control={<Radio onClick={handleLinkClick} />}
               label="Provide the Link"
+              style={{ paddingRight: "30px" }}
             />
-            <FormControlLabel value="Upload File" control={<Radio onClick={handleUploadClick} />} label="Upload File" />
+            <FormControlLabel
+              value="Upload File"
+              control={<Radio onClick={handleUploadClick} />}
+              label="Upload File"
+              style={{ paddingRight: "30px" }}
+            />
           </RadioGroup>
         </StyledFormControl>
       </div>
-      {isPreset && <Preset />}
-      {isLink && <Link />}
-      {isUpload && <Upload />}
+      {isPreset && (
+        <div style={{ paddingTop: "30px" }}>
+          <Preset />
+        </div>
+      )}
+      {isLink && (
+        <div style={{ paddingTop: "30px" }}>
+          <Link />
+        </div>
+      )}
+      {isUpload && (
+        <div style={{ paddingTop: "30px" }}>
+          <Upload />
+        </div>
+      )}
     </>
   );
 }

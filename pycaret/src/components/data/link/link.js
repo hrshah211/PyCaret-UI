@@ -1,7 +1,8 @@
 import React from "react";
+import WorkInProgress from "../../workInProgress";
 
 const Link = () => {
-  return <div>Link</div>;
+  return <WorkInProgress />;
 };
 
 export default Link;
