@@ -3,7 +3,7 @@ import initialState from "../../store/initialState";
 import { visualizationActionTypes } from "../../actionTypes/visualizationActionTypes/visualizationActionTypes";
 
 const VisualizationReducer = (state = initialState, action) => {
-  let charts = []
+  let charts = [];
   switch (action.type) {
     case visualizationActionTypes.SET_CHART_TYPES:
       return {
@@ -43,6 +43,18 @@ const VisualizationReducer = (state = initialState, action) => {
     case visualizationActionTypes.SET_CHART_DETAILS:
       charts = [...state.visualization.charts];
       charts[charts.findIndex((chart) => chart.chartId === action.payload.chartId)] = action.payload;
+      return {
+        ...state,
+        visualization: {
+          ...state.visualization,
+          charts: [...charts],
+        },
+      };
+    case visualizationActionTypes.RESET_CHARTS_DATA:
+      charts = [];
+      if (state.visualization.charts.length > 0) {
+        charts = [defaultChart];
+      }
       return {
         ...state,
         visualization: {

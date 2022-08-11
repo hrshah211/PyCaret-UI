@@ -26,3 +26,9 @@ export const SetChartDetails = (payload) => {
     payload: payload,
   };
 };
+
+export const ResetChartsData = () => {
+  return {
+    type: visualizationActionTypes.RESET_CHARTS_DATA,
+  };
+};

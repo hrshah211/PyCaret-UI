@@ -12,6 +12,7 @@ import {
 import InputLabel from "@mui/material/InputLabel";
 import Loader from "../../loader/loader";
 import MenuItem from "@mui/material/MenuItem";
+import { ResetChartsData } from "../../../actions/visualizationActions/visualizationActions";
 import { ResetDataTypesData } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
 import Select from "@mui/material/Select";
 import TableView from "./tableview";
@@ -27,6 +28,7 @@ const Preset = (props) => {
     props.SetSelectedDataset(event.target.value);
     getData(event.target.value, props.checkFullData);
     props.ResetDataTypesData();
+    props.ResetChartsData();
   };
 
   const handleFullDataChange = (event) => {
@@ -134,6 +136,7 @@ const mapDispatchToProps = (dispatch) => {
     SetDataFiles: (payload) => dispatch(SetDataFiles(payload)),
     SetLoadedData: (payload) => dispatch(SetLoadedData(payload)),
     ResetDataTypesData: () => dispatch(ResetDataTypesData()),
+    ResetChartsData: () => dispatch(ResetChartsData()),
   };
 };
 
