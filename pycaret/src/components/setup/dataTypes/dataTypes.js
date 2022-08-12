@@ -129,7 +129,7 @@ const DataTypes = (props) => {
         Data Types
       </StyledTypography>
       <StyledGrid container>
-        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1} pt={1}>
           <StyledFormControl>
             <InputLabel>Numeric Features</InputLabel>
             <Select
@@ -153,7 +153,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1} pt={1}>
           <StyledFormControl>
             <InputLabel>Categorical Features</InputLabel>
             <Select
@@ -177,7 +177,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={desktop ? 1 : 0} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={desktop ? 1 : 0} pb={1} pt={1}>
           <StyledFormControl>
             <InputLabel>Date Features</InputLabel>
             <Select
@@ -201,7 +201,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1} pt={1}>
           <StyledFormControl>
             <InputLabel>Text Features</InputLabel>
             <Select
@@ -225,7 +225,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1} pt={1}>
           <StyledFormControl>
             <InputLabel>Keep Features</InputLabel>
             <Select
@@ -249,7 +249,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pb={1} pt={1}>
           <StyledFormControl>
             <InputLabel>Ignored Features</InputLabel>
             <Select
@@ -275,7 +275,7 @@ const DataTypes = (props) => {
         </StyledGrid>
       </StyledGrid>
       <StyledGrid container>
-        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1} pt={1}>
           <StyledFormControl>
             <InputLabel>Ordinal Features</InputLabel>
             <Select
@@ -300,28 +300,35 @@ const DataTypes = (props) => {
           </StyledFormControl>
         </StyledGrid>
         {Object.keys(props.ordinalFeaturesOrder).map((key, i) => (
-            <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile || (tablet && ((i-1) % 3 === 0)) || (desktop && ((i-4) % 6 === 0)) ? 0 : 1} key={key} pb={1}>
-              <StyledFormControl>
-                <TextField
-                  label={key}
-                  value={props.ordinalFeaturesOrder[key]}
-                  onClick={(event) => handleOrdinalFeaturesOrderClick(event, key)}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <Modal open={open} onClose={handleClose}>
-                  <StyledBox>
-                    <StyledDiv bgc={"#5CD8ED"} mt={5} mr={5} ml={5} mb={5} br={5}>
-                      <StyledTypography variant="h5" component="div" pt={1} pb={1}>
-                        {modalKey}
-                      </StyledTypography>
-                    </StyledDiv>
-                    <SortableDragAndDrop key={modalKey} param={modalKey} />
-                  </StyledBox>
-                </Modal>
-              </StyledFormControl>
-            </StyledGrid>
+          <StyledGrid
+            item
+            pt={1}
+            xs={mobile ? 12 : desktop ? 2 : 4}
+            pr={mobile || (tablet && (i - 1) % 3 === 0) || (desktop && (i - 4) % 6 === 0) ? 0 : 1}
+            key={key}
+            pb={1}
+          >
+            <StyledFormControl>
+              <TextField
+                label={key}
+                value={props.ordinalFeaturesOrder[key]}
+                onClick={(event) => handleOrdinalFeaturesOrderClick(event, key)}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+              <Modal open={open} onClose={handleClose}>
+                <StyledBox>
+                  <StyledDiv bgc={"#5CD8ED"} mt={5} mr={5} ml={5} mb={5} br={5}>
+                    <StyledTypography variant="h5" component="div" pt={1} pb={1}>
+                      {modalKey}
+                    </StyledTypography>
+                  </StyledDiv>
+                  <SortableDragAndDrop key={modalKey} param={modalKey} />
+                </StyledBox>
+              </Modal>
+            </StyledFormControl>
+          </StyledGrid>
         ))}
       </StyledGrid>
     </>

@@ -17,11 +17,14 @@ import { ResetDataTypesData } from "../../../actions/setupActions/dataTypesActio
 import Select from "@mui/material/Select";
 import TableView from "./tableview";
 import { connect } from "react-redux";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import useSynchronousState from "../../../customHooks/useSynchronousState";
 
 const Preset = (props) => {
   const loadingDatasets = useSynchronousState(false);
   const loadingData = useSynchronousState(false);
+
+  const mobile = useMediaQuery("(max-width:600px)");
 
   const handleDataSetChange = (event) => {
     loadingData.set(true);
@@ -75,7 +78,7 @@ const Preset = (props) => {
           </>
         ) : (
           <>
-            <StyledGrid item xs={4}>
+            <StyledGrid item xs={mobile ? 12 : 4}>
               <StyledFormControl w="500">
                 <InputLabel>Datasets</InputLabel>
                 <Select
@@ -94,7 +97,7 @@ const Preset = (props) => {
                 </Select>
               </StyledFormControl>
             </StyledGrid>
-            <StyledGrid item xs={4} display="flex" justifyContent={"center"} alignItems={"center"}>
+            <StyledGrid item xs={mobile ? 7 : 4} display="flex" justifyContent={"center"} alignItems={"center"}>
               {props.selectedDataset && !loadingData.get() && (
                 <StyledTypography>
                   Shape {props.loadedData.length} rows and {Object.keys(props.loadedData[0]).length} columns
@@ -102,7 +105,7 @@ const Preset = (props) => {
               )}
             </StyledGrid>
 
-            <StyledGrid item xs={4} display="flex" justifyContent="flex-end">
+            <StyledGrid item xs={mobile ? 5 : 4} display="flex" justifyContent="flex-end">
               <FormControlLabel
                 control={<Checkbox value={props.checkFullData} onChange={handleFullDataChange} />}
                 label="Load Full Data"

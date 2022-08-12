@@ -27,11 +27,16 @@ import Chart from "./chart";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Loader from "../loader/loader";
 import { connect } from "react-redux";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import useSynchronousState from "../../customHooks/useSynchronousState";
 
 const Visualization = (props) => {
   const [modalChart, setModalChart] = useState({});
   const loading = useSynchronousState(false);
+
+  const mobile = useMediaQuery("(max-width:600px)");
+  const desktop = useMediaQuery("(min-width:900px)");
+  const tablet = !mobile && !desktop;
 
   const getChartTypes = () => {
     fetch(getURL(API_URL.GET_CHART_TYPES)).then((res) =>
@@ -71,19 +76,19 @@ const Visualization = (props) => {
           </StyledTypography>
         </StyledAccordionSummary>
         <AccordionDetails>
-          <div style={{ display: "flex" }}>
-            <div style={{ width: "80%" }}>
+          <StyledGrid container>
+            <StyledGrid xs={mobile ? 12 : 10}>
               {!props.checkFullData && (
                 <Alert severity="error">Load the full dataset for accurate visualization!</Alert>
               )}
-            </div>
-            <div style={{ textAlign: "end", width: "20%" }}>
+            </StyledGrid>
+            <StyledGrid xs={mobile ? 12 : 2} style={{ textAlign: mobile ? "center" : "end" }} pt={1}>
               <Button variant="outlined" size="large" onClick={handleAddChartClick}>
                 <StyledFontAwesomeIcon icon={faCirclePlus} pr={5} />
                 <StyledTypography>Add Chart</StyledTypography>
               </Button>
-            </div>
-          </div>
+            </StyledGrid>
+          </StyledGrid>
           <StyledGrid container pt={2}>
             {loading.get() ? (
               <>
@@ -94,8 +99,15 @@ const Visualization = (props) => {
               </>
             ) : (
               <>
-                {props.charts.map((chart) => (
-                  <StyledGrid item xs={2} pr={1} pt={1} pb={2} key={chart.chartId}>
+                {props.charts.map((chart, i) => (
+                  <StyledGrid
+                    item
+                    xs={mobile ? 12 : desktop ? 2 : 4}
+                    pr={mobile || (tablet && (i - 2) % 3 === 0) || (desktop && (i - 5) % 6 === 0) ? 0 : 1}
+                    pt={1}
+                    pb={2}
+                    key={chart.chartId}
+                  >
                     <Card>
                       <StyledDiv onClick={(event) => handleOpenChartClick(event, chart.chartId)}>
                         <StyledCardContent>
