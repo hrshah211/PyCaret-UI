@@ -9,11 +9,12 @@ import {
   SetOtherCategoricalImputation,
   SetOtherNumericImputation,
 } from "../../../actions/setupActions/missingValuesActions/missingValuesActions";
-import { StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
+import { StyledFormControl, StyledGrid, StyledTypography } from "../../../styles";
 
 import React from "react";
 import { connect } from "react-redux";
 import setupParameters from "../setupParameters";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const getDefaultValue = (source) => {
   const defaultData = source.filter(([i, data]) => data.default === true);
@@ -26,6 +27,9 @@ const getSelectedValue = (source, value) => {
 };
 
 const MissingValues = (props) => {
+
+  const mobile = useMediaQuery("(max-width:600px)");
+  
   //#region Imputation Type
 
   const handleImputationTypeChange = (event) => {
@@ -106,7 +110,7 @@ const MissingValues = (props) => {
         Missing Values
       </StyledTypography>
       <StyledGrid container pb={1}>
-        <StyledGrid item xs={3} pr={1}>
+        <StyledGrid item xs={mobile ? 12 : 3} pr={mobile ? 0 : 1} pt={1}>
           <StyledFormControl>
             <InputLabel>Imputation Type</InputLabel>
             <Select value={props.imputationType.name} label="Imputation Type" onChange={handleImputationTypeChange}>
@@ -124,7 +128,7 @@ const MissingValues = (props) => {
       {props.imputationType.name === "Simple" && (
         <>
           <StyledGrid container pb={1}>
-            <StyledGrid item xs={3} pr={1}>
+            <StyledGrid item xs={mobile ? 12 : 3} pr={mobile ? 0 : 1} pt={1}>
               <StyledFormControl>
                 <InputLabel>Numeric Imputation</InputLabel>
                 <Select
@@ -143,7 +147,7 @@ const MissingValues = (props) => {
               </StyledFormControl>
             </StyledGrid>
             {props.numericImputation.name === "Other" && (
-              <StyledGrid item xs={3} pr={1}>
+              <StyledGrid item xs={mobile ? 12 : 3} pr={mobile ? 0 : 1} pt={1}>
                 <StyledFormControl>
                   <TextField
                     type="number"
@@ -157,7 +161,7 @@ const MissingValues = (props) => {
                 </StyledFormControl>
               </StyledGrid>
             )}
-            <StyledGrid item xs={3} pr={1}>
+            <StyledGrid item xs={mobile ? 12 : 3} pr={mobile ? 0 : 1} pt={1}>
               <StyledFormControl>
                 <InputLabel>Categorical Imputation</InputLabel>
                 <Select
@@ -176,7 +180,7 @@ const MissingValues = (props) => {
               </StyledFormControl>
             </StyledGrid>
             {props.categoricalImputation.name === "Other" && (
-              <StyledGrid item xs={3} pr={1}>
+              <StyledGrid item xs={mobile ? 12 : 3} pt={1}>
                 <StyledFormControl>
                   <TextField
                     label="Other Categorical Imputation"
@@ -192,7 +196,7 @@ const MissingValues = (props) => {
       {props.imputationType.name === "Iterative" && (
         <>
           <StyledGrid container pb={1}>
-            <StyledGrid item xs={4} pr={1}>
+            <StyledGrid item xs={mobile ? 12 : 4} pr={mobile ? 0 : 1} pt={1}>
               <StyledFormControl>
                 <InputLabel>Numeric Iterative Imputer</InputLabel>
                 <Select
@@ -210,7 +214,7 @@ const MissingValues = (props) => {
                 </Select>
               </StyledFormControl>
             </StyledGrid>
-            <StyledGrid item xs={4}>
+            <StyledGrid item xs={mobile ? 12 : 4} pr={mobile ? 0 : 1} pt={1}>
               <StyledFormControl>
                 <TextField
                   label="Iterative Imputation Iterations"
@@ -223,7 +227,7 @@ const MissingValues = (props) => {
                 />
               </StyledFormControl>
             </StyledGrid>
-            <StyledGrid item xs={4} pl={1}>
+            <StyledGrid item xs={mobile ? 12 : 4} pt={1}>
               <StyledFormControl>
                 <InputLabel>Categorical Iterative Imputer</InputLabel>
                 <Select
