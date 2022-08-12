@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledTypography } from '../Styles'
+import { StyledTypography } from '../styles'
 
 const WorkInProgress = () => {
   return (

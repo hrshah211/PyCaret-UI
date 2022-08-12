@@ -1,4 +1,4 @@
-import { StyledDiv, StyledSortableList, StyledTypography } from "../../../Styles";
+import { StyledDiv, StyledSortableList, StyledTypography } from "../../../styles";
 
 import React from "react";
 import { SetOrdinalFeaturesOrder } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";

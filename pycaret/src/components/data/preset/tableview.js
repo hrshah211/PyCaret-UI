@@ -1,6 +1,6 @@
 import Paper from "@mui/material/Paper";
 import React from "react";
-import { StyledTypography } from "../../../Styles";
+import { StyledTypography } from "../../../styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -17,16 +17,18 @@ const TableView = (props) => {
           <TableHead>
             <TableRow>
               {props.dataColumns.map((columns) => (
-                <TableCell key={columns}><StyledTypography>{columns}</StyledTypography></TableCell>
+                <TableCell key={columns}>
+                  <StyledTypography>{columns}</StyledTypography>
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {Object.keys(props.loadedData).map((key) => (
-              <TableRow key={key} >
+              <TableRow key={key}>
                 {Object.keys(props.loadedData[key]).map((ind) => (
                   <TableCell component="th" scope="row" key={ind}>
-                    <StyledTypography style={{fontWeight: 550}}>{props.loadedData[key][ind]}</StyledTypography>
+                    <StyledTypography style={{ fontWeight: 550 }}>{props.loadedData[key][ind]}</StyledTypography>
                   </TableCell>
                 ))}
               </TableRow>

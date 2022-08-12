@@ -2,7 +2,7 @@ import * as React from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import { StyledTypography } from "../../Styles";
+import { StyledTypography } from "../../styles";
 import Toolbar from "@mui/material/Toolbar";
 
 function navbar() {

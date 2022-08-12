@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/navbar";
 import { Provider } from "react-redux";
 import Setup from "./components/setup/setup";
 import Store from "./store/store";
-import { StyledDiv } from "./Styles";
+import { StyledDiv } from "./styles";
 import Visualization from "./components/visualization/visualization";
 
 const theme = createTheme({

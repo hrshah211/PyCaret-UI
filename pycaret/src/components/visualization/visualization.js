@@ -16,7 +16,7 @@ import {
   StyledFontAwesomeIcon,
   StyledGrid,
   StyledTypography,
-} from "../../Styles";
+} from "../../styles";
 import { faCirclePlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import AccordionDetails from "@mui/material/AccordionDetails";

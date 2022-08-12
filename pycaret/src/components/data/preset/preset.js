@@ -1,5 +1,5 @@
 import { API_URL, getURL } from "../../../store/apiURL";
-import { BorderedDataSetDiv, StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
+import { BorderedDataSetDiv, StyledFormControl, StyledGrid, StyledTypography } from "../../../styles";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import React, { useEffect } from "react";
 import {

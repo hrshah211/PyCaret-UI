@@ -1,6 +1,6 @@
 import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { StyledFontAwesomeIcon, StyledFormControl, StyledGrid } from "../../Styles";
+import { StyledFontAwesomeIcon, StyledFormControl, StyledGrid } from "../../styles";
 
 import CloseIcon from "@mui/icons-material/Close";
 import Plot from "react-plotly.js";
@@ -29,7 +29,6 @@ const Chart = (props) => {
   };
 
   const handleReset = () => {
-    console.log("hi");
     setChart({ ...chart, chartName: "Chart", chartType: "", xAxis: "", yAxis: "" });
     setXAxis("");
     setYAxis("");

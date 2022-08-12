@@ -12,12 +12,17 @@ import {
   SetSelectedFeatures,
   SetTextFeatures,
 } from "../../../actions/setupActions/dataTypesActions/dataTypesActions";
-import { StyledBox, StyledDiv, StyledFormControl, StyledGrid, StyledTypography } from "../../../Styles";
+import { StyledBox, StyledDiv, StyledFormControl, StyledGrid, StyledTypography } from "../../../styles";
 
 import SortableDragAndDrop from "./sortableDragAndDrop";
 import { connect } from "react-redux";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const DataTypes = (props) => {
+  const mobile = useMediaQuery("(max-width:600px)");
+  const desktop = useMediaQuery("(min-width:900px)");
+  const tablet = !mobile && !desktop;
+
   const getOrdinalFeatureData = (columnName) => {
     fetch(getURL(API_URL.LOAD_ORDINAL_COLUMN_DATA), {
       method: "POST",
@@ -120,11 +125,11 @@ const DataTypes = (props) => {
 
   return (
     <>
-      <StyledTypography variant="h6" component="div" pb={1} pt={1} style={{fontWeight: 700}}>
+      <StyledTypography variant="h6" component="div" pb={1} pt={1} style={{ fontWeight: 700 }}>
         Data Types
       </StyledTypography>
-      <StyledGrid container pb={1}>
-        <StyledGrid item xs={2} pr={1}>
+      <StyledGrid container>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
           <StyledFormControl>
             <InputLabel>Numeric Features</InputLabel>
             <Select
@@ -148,7 +153,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={2} pr={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
           <StyledFormControl>
             <InputLabel>Categorical Features</InputLabel>
             <Select
@@ -172,7 +177,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={2} pr={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={desktop ? 1 : 0} pb={1}>
           <StyledFormControl>
             <InputLabel>Date Features</InputLabel>
             <Select
@@ -196,7 +201,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={2} pr={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
           <StyledFormControl>
             <InputLabel>Text Features</InputLabel>
             <Select
@@ -220,7 +225,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={2} pr={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
           <StyledFormControl>
             <InputLabel>Keep Features</InputLabel>
             <Select
@@ -244,7 +249,7 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        <StyledGrid item xs={2}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pb={1}>
           <StyledFormControl>
             <InputLabel>Ignored Features</InputLabel>
             <Select
@@ -270,7 +275,7 @@ const DataTypes = (props) => {
         </StyledGrid>
       </StyledGrid>
       <StyledGrid container>
-        <StyledGrid item xs={2} pr={1} pb={1}>
+        <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile ? 0 : 1} pb={1}>
           <StyledFormControl>
             <InputLabel>Ordinal Features</InputLabel>
             <Select
@@ -294,29 +299,29 @@ const DataTypes = (props) => {
             </Select>
           </StyledFormControl>
         </StyledGrid>
-        {Object.keys(props.ordinalFeaturesOrder).map((key) => (
-          <StyledGrid item xs={2} pr={1} key={key} pb={1}>
-            <StyledFormControl>
-              <TextField
-                label={key}
-                value={props.ordinalFeaturesOrder[key]}
-                onClick={(event) => handleOrdinalFeaturesOrderClick(event, key)}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              <Modal open={open} onClose={handleClose}>
-                <StyledBox>
-                  <StyledDiv bgc={'#5CD8ED'} mt={5} mr={5} ml={5} mb={5} br={5}>
-                    <StyledTypography variant="h5" component="div" pt={1} pb={1}>
-                      {modalKey}
-                    </StyledTypography>
-                  </StyledDiv>
-                  <SortableDragAndDrop key={modalKey} param={modalKey} />
-                </StyledBox>
-              </Modal>
-            </StyledFormControl>
-          </StyledGrid>
+        {Object.keys(props.ordinalFeaturesOrder).map((key, i) => (
+            <StyledGrid item xs={mobile ? 12 : desktop ? 2 : 4} pr={mobile || (tablet && ((i-1) % 3 === 0)) || (desktop && ((i-4) % 6 === 0)) ? 0 : 1} key={key} pb={1}>
+              <StyledFormControl>
+                <TextField
+                  label={key}
+                  value={props.ordinalFeaturesOrder[key]}
+                  onClick={(event) => handleOrdinalFeaturesOrderClick(event, key)}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+                <Modal open={open} onClose={handleClose}>
+                  <StyledBox>
+                    <StyledDiv bgc={"#5CD8ED"} mt={5} mr={5} ml={5} mb={5} br={5}>
+                      <StyledTypography variant="h5" component="div" pt={1} pb={1}>
+                        {modalKey}
+                      </StyledTypography>
+                    </StyledDiv>
+                    <SortableDragAndDrop key={modalKey} param={modalKey} />
+                  </StyledBox>
+                </Modal>
+              </StyledFormControl>
+            </StyledGrid>
         ))}
       </StyledGrid>
     </>
@@ -325,7 +330,9 @@ const DataTypes = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    selectedDataset: state?.presetReducer?.data?.preset?.selectedDataset ? state.presetReducer.data.preset.selectedDataset : "",
+    selectedDataset: state?.presetReducer?.data?.preset?.selectedDataset
+      ? state.presetReducer.data.preset.selectedDataset
+      : "",
     dataColumns: state?.presetReducer?.data?.preset?.dataColumns ? state.presetReducer.data.preset.dataColumns : [],
     numericFeatures: state?.dataTypesReducer?.setup?.dataTypes?.numericFeatures
       ? state.dataTypesReducer.setup.dataTypes.numericFeatures
@@ -333,9 +340,15 @@ const mapStateToProps = (state) => {
     categoricalFeatures: state?.dataTypesReducer?.setup?.dataTypes?.categoricalFeatures
       ? state.dataTypesReducer.setup.dataTypes.categoricalFeatures
       : [],
-    dateFeatures: state?.dataTypesReducer?.setup?.dataTypes?.dateFeatures ? state.dataTypesReducer.setup.dataTypes.dateFeatures : [],
-    textFeatures: state?.dataTypesReducer?.setup?.dataTypes?.textFeatures ? state.dataTypesReducer.setup.dataTypes.textFeatures : [],
-    keepFeatures: state?.dataTypesReducer?.setup?.dataTypes?.keepFeatures ? state.dataTypesReducer.setup.dataTypes.keepFeatures : [],
+    dateFeatures: state?.dataTypesReducer?.setup?.dataTypes?.dateFeatures
+      ? state.dataTypesReducer.setup.dataTypes.dateFeatures
+      : [],
+    textFeatures: state?.dataTypesReducer?.setup?.dataTypes?.textFeatures
+      ? state.dataTypesReducer.setup.dataTypes.textFeatures
+      : [],
+    keepFeatures: state?.dataTypesReducer?.setup?.dataTypes?.keepFeatures
+      ? state.dataTypesReducer.setup.dataTypes.keepFeatures
+      : [],
     ignoredFeatures: state?.dataTypesReducer?.setup?.dataTypes?.ignoredFeatures
       ? state.dataTypesReducer.setup.dataTypes.ignoredFeatures
       : [],

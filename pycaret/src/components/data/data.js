@@ -1,4 +1,4 @@
-import { StyledAccordion, StyledAccordionSummary, StyledTypography } from "../../Styles";
+import { StyledAccordion, StyledAccordionSummary, StyledTypography } from "../../styles";
 
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
