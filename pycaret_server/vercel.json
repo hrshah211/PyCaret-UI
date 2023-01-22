@@ -2,15 +2,18 @@
     "version": 2,
     "builds": [
       {
-        "src": "pycaret-server/*.py",
+        "src": "app.py",
         "use": "@vercel/python"
       }
     ],
     "routes": [
       {
         "handle": "python",
-        "src": "pycaret-server/app.py"
+        "src": "app.py"
       }
-    ]
+    ],
+    "env": {
+      "PYTHON_VERSION": "3.8.10"
+    }
   }
   
