@@ -1,12 +1,16 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restx import Api, Resource, fields
 import requests
 from bs4 import BeautifulSoup
-from config import dataset_index, u_agnt, get_data
+import numpy as np
+from config import dataset_index, u_agnt
+from data_manager import get_dataset
 import data_manager
 import chart_manager
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app, version='1.0', title='PyCaret API',
           description='API for PyCaret UI.', default='PyCaret', default_label='')
 
@@ -25,10 +29,11 @@ class LoadData(Resource):
     @api.expect(load_data_model)
     def post(self):
         requestJSON = request.json
-        data = data_manager.get_data(requestJSON['data'])
+        data = data_manager.get_dataset(requestJSON['data'])
         if not requestJSON['fullData']:
             data = data.head(15)
-        return data.to_json(orient='records')
+        data = data.replace({np.nan: ''})
+        return jsonify(data.to_dict(orient='records'))
 
 @api.route('/loadOrdinalColumnData')
 class LoadOrdinalColumnData(Resource):
@@ -50,4 +55,4 @@ class GetChartTypes(Resource):
         return chart_manager.get_chart_types()
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug = True)

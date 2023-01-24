@@ -5,5 +5,5 @@ from config import dataset_index
 def get_dataset_names():
     return dataset_index['Dataset'].tolist()
 
-def get_data(dataset_name):
+def get_dataset(dataset_name):
     return get_data(dataset_name)
