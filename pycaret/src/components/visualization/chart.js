@@ -1,6 +1,12 @@
 import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { StyledFontAwesomeIcon, StyledFormControl, StyledGrid } from "../../styles";
+import {
+  StyledDiv,
+  StyledFontAwesomeIcon,
+  StyledFormControl,
+  StyledGrid,
+  StyledScrollableDiv,
+} from "../../styles";
 
 import CloseIcon from "@mui/icons-material/Close";
 import Plot from "react-plotly.js";
@@ -14,7 +20,9 @@ const Chart = (props) => {
     return props.loadedData.map((x) => x[column]);
   };
 
-  const [chart, setChart] = useState(props.charts.filter((chart) => chart.chartId === props.chart.chartId)[0]);
+  const [chart, setChart] = useState(
+    props.charts.filter((chart) => chart.chartId === props.chart.chartId)[0]
+  );
   const [xAxis, setXAxis] = useState(chart.xAxis ? chart.xAxis : "");
   const [xAxisData, setXAxisData] = useState(xAxis ? getAxisData(xAxis) : []);
   const [yAxis, setYAxis] = useState(chart.yAxis ? chart.yAxis : "");
@@ -29,7 +37,13 @@ const Chart = (props) => {
   };
 
   const handleReset = () => {
-    setChart({ ...chart, chartName: "Chart", chartType: "", xAxis: "", yAxis: "" });
+    setChart({
+      ...chart,
+      chartName: "Chart",
+      chartType: "",
+      xAxis: "",
+      yAxis: "",
+    });
     setXAxis("");
     setYAxis("");
     setXAxisData([]);
@@ -59,74 +73,86 @@ const Chart = (props) => {
 
   return (
     <>
-      <StyledGrid container pt={1} pl={1}>
-        <StyledGrid item xs={6} pr={1}>
-          <StyledFormControl>
-            <TextField
-              label="Chart Name"
-              type="text"
-              value={chart.chartName}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChartNameChange}
-            />
-          </StyledFormControl>
+      <StyledScrollableDiv style={{ flex: 1 }}>
+        <StyledGrid container pt={1} pl={1}>
+          <StyledGrid item xs={6} pr={1}>
+            <StyledFormControl>
+              <TextField
+                label="Chart Name"
+                type="text"
+                value={chart.chartName}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={handleChartNameChange}
+              />
+            </StyledFormControl>
+          </StyledGrid>
+          <StyledGrid item xs={6} pr={1}>
+            <StyledFormControl>
+              <InputLabel>Chart Type</InputLabel>
+              <Select
+                native
+                label="Chart Type"
+                onChange={handleChartTypeChange}
+                value={chart.chartType}
+              >
+                {Object.keys(props.chartTypes).map((key) => (
+                  <optgroup key={key} label={key}>
+                    {props.chartTypes[key].map((chartType) => (
+                      <option key={chartType}>{chartType}</option>
+                    ))}
+                  </optgroup>
+                ))}
+              </Select>
+            </StyledFormControl>
+          </StyledGrid>
         </StyledGrid>
-        <StyledGrid item xs={6} pr={1}>
-          <StyledFormControl>
-            <InputLabel>Chart Type</InputLabel>
-            <Select native label="Chart Type" onChange={handleChartTypeChange} value={chart.chartType}>
-              {Object.keys(props.chartTypes).map((key) => (
-                <optgroup key={key} label={key}>
-                  {props.chartTypes[key].map((chartType) => (
-                    <option key={chartType}>{chartType}</option>
-                  ))}
-                </optgroup>
-              ))}
-            </Select>
-          </StyledFormControl>
+        <StyledGrid container pt={1} pl={1}>
+          <StyledGrid item xs={6} pr={1}>
+            <StyledFormControl>
+              <InputLabel>X Axis</InputLabel>
+              <Select label="X Axis" value={xAxis} onChange={handleXAxisChange}>
+                {props.dataColumns.map((name) => (
+                  <MenuItem key={name} value={name}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </StyledFormControl>
+          </StyledGrid>
+          <StyledGrid item xs={6} pr={1}>
+            <StyledFormControl>
+              <InputLabel>Y Axis</InputLabel>
+              <Select label="Y Axis" value={yAxis} onChange={handleYAxisChange}>
+                {props.dataColumns.map((name) => (
+                  <MenuItem key={name} value={name}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </StyledFormControl>
+          </StyledGrid>
         </StyledGrid>
-      </StyledGrid>
-      <StyledGrid container pt={1} pl={1}>
-        <StyledGrid item xs={6} pr={1}>
-          <StyledFormControl>
-            <InputLabel>X Axis</InputLabel>
-            <Select label="X Axis" value={xAxis} onChange={handleXAxisChange}>
-              {props.dataColumns.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </StyledFormControl>
+        <StyledGrid container>
+          <Plot
+            data={[
+              {
+                x: xAxisData,
+                y: yAxisData,
+                type: "bar",
+              },
+            ]}
+            layout={{ title: chart.chartName }}
+          />
         </StyledGrid>
-        <StyledGrid item xs={6} pr={1}>
-          <StyledFormControl>
-            <InputLabel>Y Axis</InputLabel>
-            <Select label="Y Axis" value={yAxis} onChange={handleYAxisChange}>
-              {props.dataColumns.map((name) => (
-                <MenuItem key={name} value={name}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </StyledFormControl>
-        </StyledGrid>
-      </StyledGrid>
-      <StyledGrid container>
-        <Plot
-          data={[
-            {
-              x: xAxisData,
-              y: yAxisData,
-              type: "bar",
-            },
-          ]}
-          layout={{ title: chart.chartName }}
-        />
-      </StyledGrid>
-      <StyledGrid container justifyContent="flex-end">
+      </StyledScrollableDiv>
+      <StyledDiv
+        justifyContent="flex-end"
+        style={{ flex: "0 0 auto" }}
+        pb={10}
+        pt={10}
+      >
         <Button
           variant="outlined"
           onClick={handleReset}
@@ -151,7 +177,7 @@ const Chart = (props) => {
         >
           Save
         </Button>
-      </StyledGrid>
+      </StyledDiv>
     </>
   );
 };
@@ -161,9 +187,15 @@ const mapStateToProps = (state) => {
     chartTypes: state?.visualizationReducer?.visualization?.chartTypes
       ? state.visualizationReducer.visualization.chartTypes
       : [],
-    charts: state?.visualizationReducer?.visualization?.charts ? state.visualizationReducer.visualization.charts : [],
-    dataColumns: state?.presetReducer?.data?.preset?.dataColumns ? state.presetReducer.data.preset.dataColumns : [],
-    loadedData: state?.presetReducer?.data?.preset?.loadedData ? state.presetReducer.data.preset.loadedData : {},
+    charts: state?.visualizationReducer?.visualization?.charts
+      ? state.visualizationReducer.visualization.charts
+      : [],
+    dataColumns: state?.presetReducer?.data?.preset?.dataColumns
+      ? state.presetReducer.data.preset.dataColumns
+      : [],
+    loadedData: state?.presetReducer?.data?.preset?.loadedData
+      ? state.presetReducer.data.preset.loadedData
+      : {},
   };
 };
 

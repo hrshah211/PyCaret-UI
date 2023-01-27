@@ -57,7 +57,7 @@ export const StyledAccordionSummary = styled(AccordionSummary)`
   background-color: #eaeaea !important;
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;
-`; 
+`;
 
 export const StyledAccordion = styled(Accordion)`
   margin-bottom: 10px;
@@ -94,9 +94,9 @@ export const StyledTypography = styled(Typography)`
 
 export const StyledBox = styled(Box)`
   position: absolute;
-  min-width: ${(props) => (props.mnw ? props.mnw : 250)}px;
-  min-height: ${(props) => (props.mnh ? props.mnh : 250)}px;
-  max-height: ${(props) => (props.mxh ? props.mxh : 500)}px;
+  min-width: ${(props) => (props.mnw ? props.mnw : 25)}%;
+  min-height: ${(props) => (props.mnh ? props.mnh : 25)}%;
+  max-height: ${(props) => (props.mxh ? props.mxh : 75)}%;
   background-color: white;
   border-top: 7px solid #56b9e8;
   border-right: 3px solid #56b9e8;
@@ -131,4 +131,9 @@ export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 
 export const StyledCardContent = styled(CardContent)`
   background-color: #e3e4f0;
+`;
+
+export const StyledScrollableDiv = styled.div`
+  overflow-y: scroll;
+  width: 100%;
 `;

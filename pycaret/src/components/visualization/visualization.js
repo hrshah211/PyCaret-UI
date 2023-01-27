@@ -79,11 +79,21 @@ const Visualization = (props) => {
           <StyledGrid container>
             <StyledGrid xs={mobile ? 12 : 10}>
               {!props.checkFullData && (
-                <Alert severity="error">Load the full dataset for accurate visualization!</Alert>
+                <Alert severity="error">
+                  Load the full dataset for accurate visualization!
+                </Alert>
               )}
             </StyledGrid>
-            <StyledGrid xs={mobile ? 12 : 2} style={{ textAlign: mobile ? "center" : "end" }} pt={1}>
-              <Button variant="outlined" size="large" onClick={handleAddChartClick}>
+            <StyledGrid
+              xs={mobile ? 12 : 2}
+              style={{ textAlign: mobile ? "center" : "end" }}
+              pt={1}
+            >
+              <Button
+                variant="outlined"
+                size="large"
+                onClick={handleAddChartClick}
+              >
                 <StyledFontAwesomeIcon icon={faCirclePlus} pr={5} />
                 <StyledTypography>Add Chart</StyledTypography>
               </Button>
@@ -103,13 +113,23 @@ const Visualization = (props) => {
                   <StyledGrid
                     item
                     xs={mobile ? 12 : desktop ? 2 : 4}
-                    pr={mobile || (tablet && (i - 2) % 3 === 0) || (desktop && (i - 5) % 6 === 0) ? 0 : 1}
+                    pr={
+                      mobile ||
+                      (tablet && (i - 2) % 3 === 0) ||
+                      (desktop && (i - 5) % 6 === 0)
+                        ? 0
+                        : 1
+                    }
                     pt={1}
                     pb={2}
                     key={chart.chartId}
                   >
                     <Card>
-                      <StyledDiv onClick={(event) => handleOpenChartClick(event, chart.chartId)}>
+                      <StyledDiv
+                        onClick={(event) =>
+                          handleOpenChartClick(event, chart.chartId)
+                        }
+                      >
                         <StyledCardContent>
                           <StyledTypography variant="h5" component="div">
                             {chart.chartName}
@@ -117,18 +137,23 @@ const Visualization = (props) => {
                         </StyledCardContent>
                       </StyledDiv>
                       <CardActions>
-                        <Button size="small" onClick={(event) => handleDeleteChart(event, chart.chartId)}>
+                        <Button
+                          size="small"
+                          onClick={(event) =>
+                            handleDeleteChart(event, chart.chartId)
+                          }
+                        >
                           <StyledFontAwesomeIcon icon={faTrash} pr={5} />
                         </Button>
                       </CardActions>
                     </Card>
                     <Modal open={open}>
-                      <StyledBox mnw={700} mnh={700} mxh={1000}>
-                        <StyledGrid container>
-                          <StyledGrid item>
-                            <Chart chart={modalChart} close={setOpen} />
-                          </StyledGrid>
-                        </StyledGrid>
+                      <StyledBox
+                        mnw={70}
+                        mxh={90}
+                        style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}
+                      >
+                        <Chart chart={modalChart} close={setOpen} />
                       </StyledBox>
                     </Modal>
                   </StyledGrid>
@@ -147,7 +172,9 @@ const mapStateToProps = (state) => {
     chartTypes: state?.visualizationReducer?.visualization?.chartTypes
       ? state.visualizationReducer.visualization.chartTypes
       : [],
-    charts: state?.visualizationReducer?.visualization?.charts ? state.visualizationReducer.visualization.charts : [],
+    charts: state?.visualizationReducer?.visualization?.charts
+      ? state.visualizationReducer.visualization.charts
+      : [],
     checkFullData: state.presetReducer.data.preset.checkFullData,
   };
 };
