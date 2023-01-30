@@ -25,4 +25,4 @@ Steps to Run Frontend:
   
 APP Deployed on : https://py-caret-ui.vercel.app/ (Initial API Hit is a bit slow due to a heavy build in Heroku Backend. But the following loads or reloads work fast.)
 
-API Deployment coming soon
+API Deploymed on : https://pycaret-api.onrender.com/
