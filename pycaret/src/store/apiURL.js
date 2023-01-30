@@ -6,6 +6,6 @@ export const API_URL = {
 };
 
 export const getURL = (parameter) => {
-  // return "https://py-caret-api.herokuapp.com" + parameter;
-  return "http://127.0.0.1:5000" + parameter;
+  return "https://pycaret-api.onrender.com" + parameter;
+  // return "http://127.0.0.1:5000" + parameter;
 };
