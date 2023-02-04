@@ -149,9 +149,13 @@ const Visualization = (props) => {
                     </Card>
                     <Modal open={open}>
                       <StyledBox
-                        mnw={70}
+                        w={mobile ? 90 : 70}
                         mxh={90}
-                        style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-end",
+                        }}
                       >
                         <Chart chart={modalChart} close={setOpen} />
                       </StyledBox>

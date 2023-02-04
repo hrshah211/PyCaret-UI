@@ -94,7 +94,7 @@ export const StyledTypography = styled(Typography)`
 
 export const StyledBox = styled(Box)`
   position: absolute;
-  min-width: ${(props) => (props.mnw ? props.mnw : 25)}%;
+  width: ${(props) => (props.w ? props.w : 25)}%;
   min-height: ${(props) => (props.mnh ? props.mnh : 25)}%;
   max-height: ${(props) => (props.mxh ? props.mxh : 75)}%;
   background-color: white;

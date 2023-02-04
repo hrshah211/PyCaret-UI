@@ -144,6 +144,8 @@ const Chart = (props) => {
               },
             ]}
             layout={{ title: chart.chartName }}
+            useResizeHandler={true}
+            style={{ width: "100%", height: "100%" }}
           />
         </StyledGrid>
       </StyledScrollableDiv>
