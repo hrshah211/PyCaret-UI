@@ -98,10 +98,10 @@ export const StyledBox = styled(Box)`
   min-height: ${(props) => (props.mnh ? props.mnh : 25)}%;
   max-height: ${(props) => (props.mxh ? props.mxh : 75)}%;
   background-color: white;
-  border-top: 7px solid #56b9e8;
-  border-right: 3px solid #56b9e8;
-  border-bottom: 3px solid #56b9e8;
-  border-left: 3px solid #56b9e8;
+  border-top: 7px solid #346391;
+  border-right: 3px solid #346391;
+  border-bottom: 3px solid #346391;
+  border-left: 3px solid #346391;
   border-radius: 5px;
   top: 50%;
   left: 50%;

@@ -1,12 +1,6 @@
 import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
-import {
-  StyledDiv,
-  StyledFontAwesomeIcon,
-  StyledFormControl,
-  StyledGrid,
-  StyledScrollableDiv,
-} from "../../styles";
+import { StyledDiv, StyledFontAwesomeIcon, StyledFormControl, StyledGrid, StyledScrollableDiv } from "../../styles";
 
 import CloseIcon from "@mui/icons-material/Close";
 import Plot from "react-plotly.js";
@@ -20,9 +14,7 @@ const Chart = (props) => {
     return props.loadedData.map((x) => x[column]);
   };
 
-  const [chart, setChart] = useState(
-    props.charts.filter((chart) => chart.chartId === props.chart.chartId)[0]
-  );
+  const [chart, setChart] = useState(props.charts.filter((chart) => chart.chartId === props.chart.chartId)[0]);
   const [xAxis, setXAxis] = useState(chart.xAxis ? chart.xAxis : "");
   const [xAxisData, setXAxisData] = useState(xAxis ? getAxisData(xAxis) : []);
   const [yAxis, setYAxis] = useState(chart.yAxis ? chart.yAxis : "");
@@ -91,12 +83,7 @@ const Chart = (props) => {
           <StyledGrid item xs={6} pr={1}>
             <StyledFormControl>
               <InputLabel>Chart Type</InputLabel>
-              <Select
-                native
-                label="Chart Type"
-                onChange={handleChartTypeChange}
-                value={chart.chartType}
-              >
+              <Select native label="Chart Type" onChange={handleChartTypeChange} value={chart.chartType}>
                 {Object.keys(props.chartTypes).map((key) => (
                   <optgroup key={key} label={key}>
                     {props.chartTypes[key].map((chartType) => (
@@ -143,18 +130,18 @@ const Chart = (props) => {
                 type: "bar",
               },
             ]}
-            layout={{ title: chart.chartName }}
+            layout={{
+              title: chart.chartName,
+              xaxis: { title: xAxis },
+              yaxis: { title: yAxis },
+            }}
             useResizeHandler={true}
             style={{ width: "100%", height: "100%" }}
+            config={{ toImageButtonOptions: { filename: chart.chartName }}}
           />
         </StyledGrid>
       </StyledScrollableDiv>
-      <StyledDiv
-        justifyContent="flex-end"
-        style={{ flex: "0 0 auto" }}
-        pb={10}
-        pt={10}
-      >
+      <StyledDiv justifyContent="flex-end" style={{ flex: "0 0 auto" }} pb={10} pt={10}>
         <Button
           variant="outlined"
           onClick={handleReset}
@@ -163,20 +150,10 @@ const Chart = (props) => {
         >
           Reset
         </Button>
-        <Button
-          variant="outlined"
-          onClick={handleClose}
-          startIcon={<CloseIcon />}
-          style={{ width: "80px", marginRight: "10px" }}
-        >
+        <Button variant="outlined" onClick={handleClose} startIcon={<CloseIcon />} style={{ width: "80px", marginRight: "10px" }}>
           Close
         </Button>
-        <Button
-          variant="contained"
-          onClick={handleSave}
-          startIcon={<SaveIcon />}
-          style={{ width: "80px", marginRight: "10px" }}
-        >
+        <Button variant="contained" onClick={handleSave} startIcon={<SaveIcon />} style={{ width: "80px", marginRight: "10px" }}>
           Save
         </Button>
       </StyledDiv>
@@ -186,18 +163,10 @@ const Chart = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    chartTypes: state?.visualizationReducer?.visualization?.chartTypes
-      ? state.visualizationReducer.visualization.chartTypes
-      : [],
-    charts: state?.visualizationReducer?.visualization?.charts
-      ? state.visualizationReducer.visualization.charts
-      : [],
-    dataColumns: state?.presetReducer?.data?.preset?.dataColumns
-      ? state.presetReducer.data.preset.dataColumns
-      : [],
-    loadedData: state?.presetReducer?.data?.preset?.loadedData
-      ? state.presetReducer.data.preset.loadedData
-      : {},
+    chartTypes: state?.visualizationReducer?.visualization?.chartTypes ? state.visualizationReducer.visualization.chartTypes : [],
+    charts: state?.visualizationReducer?.visualization?.charts ? state.visualizationReducer.visualization.charts : [],
+    dataColumns: state?.presetReducer?.data?.preset?.dataColumns ? state.presetReducer.data.preset.dataColumns : [],
+    loadedData: state?.presetReducer?.data?.preset?.loadedData ? state.presetReducer.data.preset.loadedData : {},
   };
 };
 
