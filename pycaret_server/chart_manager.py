@@ -17,8 +17,9 @@ def get_chart_types():
         html = response.text 
         b_soup = BeautifulSoup(html, 'html.parser')
         products = b_soup.findAll('div', {'class': '--item-meta'})
+        links = b_soup.findAll('li', {'class': '--grid-item'})
         child = []
-        for div in products:
-            child.append(div.find('span').text)
+        for i in range (0, len(products)):
+            child.append({ 'chartName': products[i].find('span').text, 'chartURL': 'https://plotly.com' + links[i].a['href']})
         charts[chartType] = child
     return charts

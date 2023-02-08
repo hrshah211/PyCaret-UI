@@ -10,7 +10,7 @@ const VisualizationReducer = (state = initialState, action) => {
         ...state,
         visualization: {
           ...state.visualization,
-          chartTypes: action.payload,
+          chartTypes: { Default: [{ chartName: "Select Chart Type", chartURL: "https://plotly.com/javascript/" }], ...action.payload },
         },
       };
     case visualizationActionTypes.ADD_CHART:

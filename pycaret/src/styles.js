@@ -1,4 +1,4 @@
-import { Accordion, AccordionSummary, Grid, Typography } from "@mui/material";
+import { Accordion, AccordionSummary, Button, Grid, Typography } from "@mui/material";
 
 import { Box } from "@mui/system";
 import CardContent from "@mui/material/CardContent";
@@ -136,4 +136,16 @@ export const StyledCardContent = styled(CardContent)`
 export const StyledScrollableDiv = styled.div`
   overflow-y: scroll;
   width: 100%;
+`;
+
+export const WrappingTextButton = styled(Button)`
+  padding: 1rem;
+  text-transform: none;
+  max-height: 3.45rem;
+  overflow: hidden;
+`;
+
+export const WrappedText = styled.p`
+  font-size: 0.8rem;
+  white-space: normal;
 `;

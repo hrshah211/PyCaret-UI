@@ -337,34 +337,18 @@ const DataTypes = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    selectedDataset: state?.presetReducer?.data?.preset?.selectedDataset
-      ? state.presetReducer.data.preset.selectedDataset
-      : "",
+    selectedDataset: state?.presetReducer?.data?.preset?.selectedDataset ? state.presetReducer.data.preset.selectedDataset : "",
     dataColumns: state?.presetReducer?.data?.preset?.dataColumns ? state.presetReducer.data.preset.dataColumns : [],
-    numericFeatures: state?.dataTypesReducer?.setup?.dataTypes?.numericFeatures
-      ? state.dataTypesReducer.setup.dataTypes.numericFeatures
-      : [],
+    numericFeatures: state?.dataTypesReducer?.setup?.dataTypes?.numericFeatures ? state.dataTypesReducer.setup.dataTypes.numericFeatures : [],
     categoricalFeatures: state?.dataTypesReducer?.setup?.dataTypes?.categoricalFeatures
       ? state.dataTypesReducer.setup.dataTypes.categoricalFeatures
       : [],
-    dateFeatures: state?.dataTypesReducer?.setup?.dataTypes?.dateFeatures
-      ? state.dataTypesReducer.setup.dataTypes.dateFeatures
-      : [],
-    textFeatures: state?.dataTypesReducer?.setup?.dataTypes?.textFeatures
-      ? state.dataTypesReducer.setup.dataTypes.textFeatures
-      : [],
-    keepFeatures: state?.dataTypesReducer?.setup?.dataTypes?.keepFeatures
-      ? state.dataTypesReducer.setup.dataTypes.keepFeatures
-      : [],
-    ignoredFeatures: state?.dataTypesReducer?.setup?.dataTypes?.ignoredFeatures
-      ? state.dataTypesReducer.setup.dataTypes.ignoredFeatures
-      : [],
-    selectedFeatures: state?.dataTypesReducer?.setup?.dataTypes?.selectedFeatures
-      ? state.dataTypesReducer.setup.dataTypes.selectedFeatures
-      : [],
-    ordinalFeatures: state?.dataTypesReducer?.setup?.dataTypes?.ordinalFeatures
-      ? state.dataTypesReducer.setup.dataTypes.ordinalFeatures
-      : [],
+    dateFeatures: state?.dataTypesReducer?.setup?.dataTypes?.dateFeatures ? state.dataTypesReducer.setup.dataTypes.dateFeatures : [],
+    textFeatures: state?.dataTypesReducer?.setup?.dataTypes?.textFeatures ? state.dataTypesReducer.setup.dataTypes.textFeatures : [],
+    keepFeatures: state?.dataTypesReducer?.setup?.dataTypes?.keepFeatures ? state.dataTypesReducer.setup.dataTypes.keepFeatures : [],
+    ignoredFeatures: state?.dataTypesReducer?.setup?.dataTypes?.ignoredFeatures ? state.dataTypesReducer.setup.dataTypes.ignoredFeatures : [],
+    selectedFeatures: state?.dataTypesReducer?.setup?.dataTypes?.selectedFeatures ? state.dataTypesReducer.setup.dataTypes.selectedFeatures : [],
+    ordinalFeatures: state?.dataTypesReducer?.setup?.dataTypes?.ordinalFeatures ? state.dataTypesReducer.setup.dataTypes.ordinalFeatures : [],
     ordinalFeaturesOrder: state?.dataTypesReducer?.setup?.dataTypes?.ordinalFeaturesOrder
       ? state.dataTypesReducer.setup.dataTypes.ordinalFeaturesOrder
       : {},

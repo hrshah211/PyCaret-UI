@@ -1,6 +1,7 @@
 import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { StyledDiv, StyledFontAwesomeIcon, StyledFormControl, StyledGrid, StyledScrollableDiv } from "../../styles";
+import { StyledDiv, StyledFontAwesomeIcon, StyledFormControl, StyledGrid, StyledScrollableDiv, WrappedText, WrappingTextButton } from "../../styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import CloseIcon from "@mui/icons-material/Close";
 import Plot from "react-plotly.js";
@@ -8,13 +9,17 @@ import SaveIcon from "@mui/icons-material/Save";
 import { SetChartDetails } from "../../actions/visualizationActions/visualizationActions";
 import { connect } from "react-redux";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+import { faFile } from "@fortawesome/free-solid-svg-icons";
 
 const Chart = (props) => {
+  const mobile = useMediaQuery("(max-width:600px)");
+
   const getAxisData = (column) => {
     return props.loadedData.map((x) => x[column]);
   };
 
   const [chart, setChart] = useState(props.charts.filter((chart) => chart.chartId === props.chart.chartId)[0]);
+  const [chartURL, setChartURL] = useState('https://plotly.com/javascript/');
   const [xAxis, setXAxis] = useState(chart.xAxis ? chart.xAxis : "");
   const [xAxisData, setXAxisData] = useState(xAxis ? getAxisData(xAxis) : []);
   const [yAxis, setYAxis] = useState(chart.yAxis ? chart.yAxis : "");
@@ -26,6 +31,9 @@ const Chart = (props) => {
 
   const handleChartTypeChange = (e) => {
     setChart({ ...chart, chartType: e.target.value });
+    const categories = Object.values(props.chartTypes);
+    const selectedChart = categories.map((charts) => charts.find((c) => c.chartName === e.target.value)).find((c) => c);
+    setChartURL(selectedChart ? selectedChart.chartURL : "https://plotly.com/javascript/");
   };
 
   const handleReset = () => {
@@ -67,7 +75,7 @@ const Chart = (props) => {
     <>
       <StyledScrollableDiv style={{ flex: 1 }}>
         <StyledGrid container pt={1} pl={1}>
-          <StyledGrid item xs={6} pr={1}>
+          <StyledGrid item xs={mobile ? 12 : 6} pr={1}>
             <StyledFormControl>
               <TextField
                 label="Chart Name"
@@ -80,23 +88,38 @@ const Chart = (props) => {
               />
             </StyledFormControl>
           </StyledGrid>
-          <StyledGrid item xs={6} pr={1}>
+          <StyledGrid item xs={mobile ? 10 : 5} pr={1}>
             <StyledFormControl>
               <InputLabel>Chart Type</InputLabel>
               <Select native label="Chart Type" onChange={handleChartTypeChange} value={chart.chartType}>
                 {Object.keys(props.chartTypes).map((key) => (
                   <optgroup key={key} label={key}>
                     {props.chartTypes[key].map((chartType) => (
-                      <option key={chartType}>{chartType}</option>
+                      <option key={chartType.chartName}>{chartType.chartName}</option>
                     ))}
                   </optgroup>
                 ))}
               </Select>
             </StyledFormControl>
           </StyledGrid>
+          <StyledGrid item xs={mobile ? 2 : 1} pr={1}>
+            {mobile ? (
+              <Button>
+                <StyledFontAwesomeIcon icon={faFile} />
+              </Button>
+            ) : (
+              <WrappingTextButton
+                variant="outlined"
+                onClick={() => window.open(chartURL, "_blank")}
+                startIcon={<StyledFontAwesomeIcon icon={faFile} pr={5} />}
+              >
+                <WrappedText>Chart Props</WrappedText>
+              </WrappingTextButton>
+            )}
+          </StyledGrid>
         </StyledGrid>
         <StyledGrid container pt={1} pl={1}>
-          <StyledGrid item xs={6} pr={1}>
+          <StyledGrid item xs={mobile ? 12 : 6} pr={1}>
             <StyledFormControl>
               <InputLabel>X Axis</InputLabel>
               <Select label="X Axis" value={xAxis} onChange={handleXAxisChange}>
@@ -108,7 +131,7 @@ const Chart = (props) => {
               </Select>
             </StyledFormControl>
           </StyledGrid>
-          <StyledGrid item xs={6} pr={1}>
+          <StyledGrid item xs={mobile ? 12 : 6} pr={1}>
             <StyledFormControl>
               <InputLabel>Y Axis</InputLabel>
               <Select label="Y Axis" value={yAxis} onChange={handleYAxisChange}>
@@ -137,7 +160,7 @@ const Chart = (props) => {
             }}
             useResizeHandler={true}
             style={{ width: "100%", height: "100%" }}
-            config={{ toImageButtonOptions: { filename: chart.chartName }}}
+            config={{ toImageButtonOptions: { filename: chart.chartName } }}
           />
         </StyledGrid>
       </StyledScrollableDiv>
